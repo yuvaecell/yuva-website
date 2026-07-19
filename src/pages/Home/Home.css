@@ -1,0 +1,518 @@
+/* ── Shared section primitives ──────────────────────────── */
+.section {
+  padding: 6rem 0;
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+.section__heading {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+}
+
+.text-link {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--y-blue);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.15s ease;
+}
+
+.text-link:hover {
+  color: var(--y-blue-dark);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn--primary {
+  background-color: var(--y-blue);
+  color: var(--white);
+  border: 2px solid var(--y-blue);
+}
+
+.btn--primary:hover {
+  background-color: var(--y-blue-dark);
+  border-color: var(--y-blue-dark);
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+
+.btn--outline:hover {
+  background-color: var(--ink);
+  color: var(--white);
+}
+
+/* ── 1. HERO ─────────────────────────────────────────────── */
+.hero {
+  padding: 2.5rem 0 5rem;
+  background-color: var(--paper);
+  overflow: hidden;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 2rem 0 3rem;
+  }
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.hero__content {
+  max-width: 560px;
+}
+
+.hero__headline {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.hero__sub {
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.65;
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 0.875rem;
+  flex-wrap: wrap;
+}
+
+.hero__photo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero__photo {
+  width: 100%;
+  max-width: clamp(340px, 50vw, 580px);
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  transform: rotate(1.5deg);
+  box-shadow: 0 12px 40px rgba(16, 24, 43, 0.15);
+}
+
+@media (max-width: 767px) {
+  .hero__photo {
+    max-width: 100%;
+    transform: none;
+  }
+}
+
+/* ── Dark building-bg overrides ──────────────────────────── */
+
+/* 1. Hero on dark bg */
+.hero.bg-buildings {
+  background-color: var(--ink); /* fallback if photo fails */
+}
+
+.hero.bg-buildings .eyebrow { color: rgba(246, 244, 238, 0.58); }
+.hero.bg-buildings .hero__headline { color: var(--white); }
+.hero.bg-buildings .hero__sub { color: rgba(246, 244, 238, 0.7); }
+
+.hero.bg-buildings .btn--outline {
+  color: var(--white);
+  border-color: rgba(246, 244, 238, 0.55);
+}
+
+.hero.bg-buildings .btn--outline:hover {
+  background-color: rgba(246, 244, 238, 0.12);
+  color: var(--white);
+  border-color: rgba(246, 244, 238, 0.55);
+}
+
+/* 3. About on dark bg */
+.about.bg-buildings {
+  background-color: var(--ink);
+}
+
+.about.bg-buildings .eyebrow { color: rgba(246, 244, 238, 0.58); }
+.about.bg-buildings .section__heading { color: var(--white); }
+.about.bg-buildings .about__body { color: rgba(246, 244, 238, 0.7); }
+.about.bg-buildings .about__stat-value { color: var(--white); }
+.about.bg-buildings .about__stat-label { color: rgba(246, 244, 238, 0.5); }
+
+.about.bg-buildings .about__box {
+  background-color: rgba(255, 255, 255, 0.93);
+  border-color: rgba(16, 24, 43, 0.08);
+  border-left-color: var(--y-blue);
+}
+
+/* Logos and text stay in their original colors — white card bg makes them legible */
+.about.bg-buildings .about__box-title { color: var(--y-blue); }
+.about.bg-buildings .about__box-text  { color: var(--slate); }
+.about.bg-buildings .about__photo     { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+
+/* 7. Alumni on dark bg */
+.alumni.bg-buildings {
+  background-color: var(--ink);
+}
+
+.alumni.bg-buildings .eyebrow { color: rgba(246, 244, 238, 0.58); }
+.alumni.bg-buildings .section__heading { color: var(--white); }
+.alumni.bg-buildings .alumni-card__name  { color: var(--white); }
+.alumni.bg-buildings .alumni-card__title { color: rgba(246, 244, 238, 0.65); }
+
+.alumni.bg-buildings .alumni__startups {
+  border-top-color: rgba(246, 244, 238, 0.12);
+}
+
+.alumni.bg-buildings .alumni__logo-box {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ── 3. ABOUT ────────────────────────────────────────────── */
+.about {
+  background-color: var(--paper);
+}
+
+.about__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
+  align-items: stretch;
+}
+
+@media (max-width: 767px) {
+  .about__inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+.about__photo-col {
+  position: relative;
+}
+
+.about__photo {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  box-shadow: 0 8px 32px rgba(16, 24, 43, 0.1);
+}
+
+@media (max-width: 767px) {
+  .about__photo {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.about__body {
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.about__body:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.about__stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.about__stat-value {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.about__stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--slate);
+  margin-top: 0.3rem;
+}
+
+.about__boxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 500px) {
+  .about__boxes {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about__box {
+  border: 1px solid rgba(16, 24, 43, 0.1);
+  border-left: 3px solid var(--y-blue);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 1.125rem 1rem;
+  background-color: var(--paper);
+}
+
+.about__box-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.625rem;
+}
+
+.about__box-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--y-blue);
+  margin-bottom: 0.5rem;
+}
+
+.about__box-text {
+  font-size: 0.825rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+/* ── 4. WHAT WE DO ───────────────────────────────────────── */
+.what-we-do {
+  background-color: var(--white);
+}
+
+.what-we-do__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1023px) {
+  .what-we-do__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .what-we-do__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.what-we-do__card {
+  padding: 2.25rem;
+  border: 1px solid rgba(16, 24, 43, 0.1);
+  border-radius: var(--radius-md);
+  background-color: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.what-we-do__card:hover {
+  box-shadow: 0 4px 18px rgba(16, 24, 43, 0.07);
+}
+
+.what-we-do__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(29, 91, 150, 0.3);
+  background-color: rgba(29, 91, 150, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.what-we-do__icon-img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.what-we-do__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.what-we-do__desc {
+  font-size: 0.875rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+/* ── 6. EVENTS PREVIEW ───────────────────────────────────── */
+.events-preview {
+  background-color: var(--paper);
+}
+
+.events-preview__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 767px) {
+  .events-preview__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.events-preview__footer {
+  text-align: right;
+}
+
+/* ── 7. ALUMNI ───────────────────────────────────────────── */
+.alumni {
+  background-color: var(--white);
+}
+
+.alumni__grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem 2rem;
+  margin-bottom: 4rem;
+}
+
+.alumni__grid > * {
+  flex: 0 0 calc(33.333% - 1.35rem);
+  max-width: 220px;
+}
+
+@media (max-width: 767px) {
+  .alumni__grid > * {
+    flex: 0 0 calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 400px) {
+  .alumni__grid > * {
+    flex: 0 0 100%;
+    max-width: 180px;
+  }
+}
+
+.alumni__startups {
+  border-top: 1px solid rgba(16, 24, 43, 0.08);
+  padding-top: 2.5rem;
+}
+
+.alumni__startups-label {
+  margin-bottom: 1.25rem;
+}
+
+.alumni__logo-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.alumni__logo-box {
+  border: 1px solid rgba(16, 24, 43, 0.1);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 76px;
+}
+
+.alumni__brand-logo {
+  height: 56px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+  filter: grayscale(100%) opacity(0.65);
+  transition: filter 0.2s ease;
+}
+
+.alumni__logo-box:hover .alumni__brand-logo {
+  filter: grayscale(0%) opacity(1);
+}
+
+/* ── 8. PARTNERS ─────────────────────────────────────────── */
+.partners {
+  background-color: var(--paper);
+}
+
+.partners__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .partners__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 400px) {
+  .partners__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.partners__logo-box {
+  aspect-ratio: 2 / 1;
+  border: 1px dashed rgba(16, 24, 43, 0.15);
+  border-radius: var(--radius-sm);
+  background-color: var(--white);
+}

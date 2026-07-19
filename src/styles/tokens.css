@@ -1,0 +1,17 @@
+:root {
+  --y-blue: #1D5B96;
+  --y-blue-dark: #123E68;
+  --ink: #10182B;
+  --paper: #F6F4EE;
+  --slate: #6B7684;
+  --signal-amber: #E2762E;
+  --white: #FFFFFF;
+
+  --font-display: 'Newsreader', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --container-max: 1240px;
+}

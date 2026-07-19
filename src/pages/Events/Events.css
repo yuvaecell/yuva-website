@@ -1,0 +1,228 @@
+/* ═══════════════════════════════════════════════════════════════
+   Events page — full stylesheet
+   ═══════════════════════════════════════════════════════════════ */
+
+.events-page {
+  background-color: var(--paper);
+}
+
+/* ── 1. PAGE HEADER ──────────────────────────────────────────── */
+.ev-header {
+  padding: 5rem 0 6rem;
+  background-color: var(--paper);
+}
+
+@media (max-width: 767px) {
+  .ev-header {
+    padding: 3.5rem 0 4.5rem;
+  }
+}
+
+.ev-header__heading {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  max-width: 640px;
+}
+
+.ev-header__sub {
+  font-size: 1.05rem;
+  color: var(--slate);
+  line-height: 1.6;
+  max-width: 520px;
+}
+
+/* ── Shared section primitives ───────────────────────────────── */
+.ev-section {
+  padding: 6rem 0;
+}
+
+@media (max-width: 767px) {
+  .ev-section {
+    padding: 3.5rem 0;
+  }
+}
+
+.ev-section--light {
+  background-color: var(--paper);
+}
+
+/* Section logo (E-Summit, Founder's Forge branding) */
+.ev-section__brand {
+  margin-bottom: 1.25rem;
+}
+
+.ev-section__logo {
+  height: 48px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.ev-section__heading {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.875rem;
+  max-width: 640px;
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.ev-section__intro {
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.7;
+  max-width: 640px;
+  margin-bottom: 3rem;
+}
+
+/* ── Text overrides on dark building bg ──────────────────────── */
+.bg-buildings .ev-section__heading { color: var(--white); }
+.bg-buildings .ev-section__intro   { color: rgba(246, 244, 238, 0.72); }
+.bg-buildings .eyebrow             { color: rgba(246, 244, 238, 0.58); }
+.bg-buildings .ev-section__logo    { filter: brightness(0) invert(1); opacity: 0.9; }
+
+/* ── Card grids ──────────────────────────────────────────────── */
+.ev-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.ev-grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.ev-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (max-width: 1023px) {
+  .ev-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .ev-grid--3,
+  .ev-grid--2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Photo card ──────────────────────────────────────────────── */
+.ev-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--white);
+  border: 1px solid rgba(16, 24, 43, 0.09);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.ev-card:hover {
+  box-shadow: 0 6px 24px rgba(16, 24, 43, 0.1);
+  transform: translateY(-2px);
+}
+
+.ev-card__img-wrap {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ev-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.ev-card:hover .ev-card__img {
+  transform: scale(1.03);
+}
+
+.ev-card__body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.ev-card__title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.25;
+}
+
+.ev-card__desc {
+  font-size: 0.875rem;
+  color: var(--slate);
+  line-height: 1.65;
+}
+
+/* ── 5. CLOSING CTA ──────────────────────────────────────────── */
+.ev-cta {
+  padding: 6rem 0;
+  background-color: var(--ink);
+}
+
+@media (max-width: 767px) {
+  .ev-cta {
+    padding: 4rem 0;
+  }
+}
+
+.ev-cta__inner {
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.ev-cta__heading {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.875rem;
+}
+
+.ev-cta__sub {
+  font-size: 1rem;
+  color: rgba(246, 244, 238, 0.65);
+  line-height: 1.65;
+  margin-bottom: 2rem;
+}
+
+.ev-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  border: 2px solid transparent;
+}
+
+.ev-btn--primary {
+  background-color: var(--paper);
+  color: var(--ink);
+  border-color: var(--paper);
+}
+
+.ev-btn--primary:hover {
+  background-color: rgba(246, 244, 238, 0.85);
+  border-color: rgba(246, 244, 238, 0.85);
+}
