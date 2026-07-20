@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
@@ -6,14 +7,13 @@ import {
   Briefcase, LineChart, Sparkles, ShieldCheck, Presentation,
 } from 'lucide-react'
 import buildingPhoto from '../../assets/photos/buildings.png'
+import photoThinkspace from '../../assets/photos/thinkspace.png'
+import photoYuvaRoom from '../../assets/photos/yuvaroom.png'
 import yuvaIcon from '../../assets/logos/yuva-icon-only.png'
 import logoAmex from '../../assets/logos/projects/AMEX.png'
 import logoPepsico from '../../assets/logos/projects/PEPSICO.png'
 import logoItc from '../../assets/logos/projects/ITC.png'
 import logoSuprajit from '../../assets/logos/projects/SUPRAJIT.png'
-import logoIndigo from '../../assets/logos/projects/INDIGO.png'
-import logoMccain from '../../assets/logos/projects/MCCAIN.png'
-import logoPeesafe from '../../assets/logos/projects/PEESAFE.png'
 import './WhatWeDo.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -101,42 +101,6 @@ const currentProjects = [
   },
 ]
 
-const moreEngagements = [
-  {
-    logo: logoIndigo,
-    alt: 'IndiGo',
-    title: 'Reducing OTA Dependency for IndiGo Airlines',
-    desc: 'Yuva collaborated with IndiGo Airlines over a 7-week engagement to reduce OTA dependency and boost direct bookings. The team conducted primary research, analyzed OTA revenue streams, and proposed strategies like loyalty programs, UI/UX tweaks, and bundled partnerships — leading to a potential increase in direct bookings and customer retention by 25%.',
-  },
-  {
-    logo: logoMccain,
-    alt: 'McCain Foods India',
-    title: 'Innovation Research for McCain Foods India',
-    desc: 'Yuva collaborated with McCain Foods India on a four-month research and innovation project in the frozen snacking space, surveying 200+ consumers, interviewing chefs and HoReCa stakeholders, and analyzing 100+ menus. The project identified regional taste preferences and whitespace opportunities, culminating in 9+ region-specific, innovation-led frozen snack concepts.',
-  },
-  {
-    logo: logoPeesafe,
-    alt: 'PeeSafe',
-    title: 'Global Market Study for Pee Safe',
-    desc: 'Yuva conducted a global market study for Pee Safe across 12+ countries, identifying five high-potential markets through competitive and regulatory analysis. This shaped tailored go-to-market strategies to boost brand visibility and support the company\'s global expansion goals.',
-  },
-]
-
-// Past brands: IndiGo, McCain, PeeSafe removed — now have full cards above
-const pastBrands = [
-  { name: 'Hyatt',                logo: null },
-  { name: 'India Accelerator',    logo: null },
-  { name: 'Indian Angel Network', logo: null },
-  { name: 'NDTV',                 logo: null },
-  { name: 'GoEV Mobility',        logo: null },
-  { name: 'Coca-Cola',            logo: null },
-  { name: 'Lufthansa',            logo: null },
-  { name: 'Cornitos',             logo: null },
-  { name: 'Zomato',               logo: null },
-  { name: 'Paytm',                logo: null },
-  { name: 'CNBC',                 logo: null },
-  { name: 'NUS',                  logo: null },
-]
 
 // ─── Hooks ───────────────────────────────────────────────────────
 
@@ -196,12 +160,22 @@ function useOrbitReveal() {
 
 export default function WhatWeDo() {
   const { wrapRef, centerRef, nodeRefsArr } = useOrbitReveal()
+  const location = useLocation()
 
   const servicesRef    = useFadeUp()
   const compHeaderRef  = useFadeUp()
-  const moreHeaderRef  = useFadeUp()
-  const pastHeaderRef  = useFadeUp()
+  const thinkspaceRef  = useFadeUp()
   const ctaRef         = useFadeUp()
+
+  // Scroll to anchored section when navigating with a hash
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.slice(1)
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [location.hash])
 
   // GSAP pinned-scroll refs
   const pinOuterRef  = useRef(null)
@@ -402,7 +376,7 @@ export default function WhatWeDo() {
       </section>
 
       {/* ── 4. PROJECTS 2025-26 — plain bg, GSAP pinned ──────── */}
-      <section className="wwd-section wwd-projects">
+      <section id="projects" className="wwd-section wwd-projects">
         <div className="container">
           <span className="eyebrow">Projects &amp; Engagements 2025-26</span>
           <h2 className="wwd-section__heading">Real work, real clients</h2>
@@ -491,50 +465,25 @@ export default function WhatWeDo() {
         )}
       </section>
 
-      {/* ── 5. MORE ENGAGEMENTS — building bg ────────────────── */}
-      <section className="wwd-section wwd-more bg-buildings" style={bgStyle}>
+      {/* ── 5. THINKSPACE — building bg ──────────────────────── */}
+      <section id="thinkspace" className="wwd-section wwd-thinkspace bg-buildings" style={bgStyle}>
         <div className="container">
-          <div className="fade-up" ref={moreHeaderRef}>
-            <span className="eyebrow">More Engagements</span>
-            <h2 className="wwd-section__heading">Building a track record</h2>
+          <div className="fade-up" ref={thinkspaceRef}>
+            <span className="eyebrow">Our Space</span>
+            <h2 className="wwd-section__heading">ThinkSpace — Room 168</h2>
+            <p className="wwd-thinkspace__sub">
+              Room 168 — where Yuvaites gather, brainstorm, and build. A safe,
+              fun space for every entrepreneurial mind on campus.
+            </p>
           </div>
-          <div className="more-grid">
-            {moreEngagements.map(({ logo, alt, title, desc }) => (
-              <div key={title} className="more-card">
-                <div className="proj-logo-wrap">
-                  <img src={logo} alt={alt} className="proj-logo" />
-                </div>
-                <h3 className="more-card__title">{title}</h3>
-                <p className="more-card__desc">{desc}</p>
-              </div>
-            ))}
+          <div className="wwd-thinkspace__photos">
+            <img src={photoThinkspace} alt="ThinkSpace — Room 168" className="wwd-thinkspace__img" />
+            <img src={photoYuvaRoom} alt="Yuva Room" className="wwd-thinkspace__img" />
           </div>
         </div>
       </section>
 
-      {/* ── 6. PAST PROJECTS LOGO GRID — plain bg ────────────── */}
-      <section className="wwd-section wwd-past">
-        <div className="container">
-          <div className="fade-up" ref={pastHeaderRef}>
-            <span className="eyebrow">Past Projects &amp; Engagements</span>
-            <h2 className="wwd-section__heading">A longer track record</h2>
-          </div>
-          <div className="past-grid">
-            {pastBrands.map(({ name, logo }) => (
-              <div key={name} className="past-logo-box">
-                {logo ? (
-                  <img src={logo} alt={name} className="past-logo-img" />
-                ) : (
-                  /* Aarav: replace with real logo when available */
-                  <span className="past-logo-placeholder">{name}</span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. CLOSING CTA ───────────────────────────────────── */}
+      {/* ── 6. CLOSING CTA ───────────────────────────────────── */}
       <section className="wwd-cta">
         <div className="container">
           <div className="wwd-cta__inner fade-up" ref={ctaRef}>

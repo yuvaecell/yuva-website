@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 import buildingPhoto from '../../assets/photos/buildings.png'
 import teamPhoto from '../../assets/photos/teamphoto.png'
 import aboutPhoto from '../../assets/photos/about-us-cropped.jpg'
-import yAccelLogo from '../../assets/logos/y-accel-logo.png'
-import siifLogo from '../../assets/logos/siif-logo.png'
+import yAccelLogo from '../../assets/logos/y-accel-logo-new.png'
+import siifLogo from '../../assets/logos/siif-logo-new.png'
 import esummitLogo from '../../assets/logos/events/ESUMMIT.png'
 import foundersLogo from '../../assets/logos/events/FOUNDERSFORGE.png'
 import alumniAditya from '../../assets/photos/alumni/aditya-arora.jpg'
@@ -12,6 +12,9 @@ import alumniApeksha from '../../assets/photos/alumni/apeksha-gupta.jpg'
 import alumniBala from '../../assets/photos/alumni/bala-sarda.jpg'
 import alumniNikita from '../../assets/photos/alumni/nikita-khanna.jpg'
 import alumniPranav from '../../assets/photos/alumni/pranav-bajaj.jpg'
+import alumniSrishti from '../../assets/photos/alumni/shrishti-jain-kwatra.jpeg'
+import alumniShivansh from '../../assets/photos/alumni/shivansh-jindal.jpeg'
+import alumniAnmol from '../../assets/photos/alumni/anmol-ahlawat.jpeg'
 import brandAdda247 from '../../assets/logos/alumni-brands/adda247.png'
 import brandFeedingIndia from '../../assets/logos/alumni-brands/feedingindia.png'
 import brandJohnJacobs from '../../assets/logos/alumni-brands/johnjacobs.png'
@@ -19,6 +22,7 @@ import brandKhaad from '../../assets/logos/alumni-brands/khaad.png'
 import brandMedulance from '../../assets/logos/alumni-brands/medulance.png'
 import brandMoxie from '../../assets/logos/alumni-brands/moxiebeauty.jpeg'
 import brandVahdam from '../../assets/logos/alumni-brands/vahdam.png'
+import brandMerchantRecords from '../../assets/logos/alumni-brands/merchantrecords.png'
 import iconProjects from '../../assets/logos/what-we-do/projects.png'
 import iconEvent from '../../assets/logos/what-we-do/event.png'
 import iconStartups from '../../assets/logos/what-we-do/startups.png'
@@ -61,16 +65,20 @@ const alumni = [
   { name: 'Bala Sarda', title: 'Founder & CEO, Vahdam Teas', photo: alumniBala },
   { name: 'Nikita Khanna', title: 'Co-Founder, Moxie Beauty', photo: alumniNikita },
   { name: 'Pranav Bajaj', title: 'Co-Founder, Medulance (Forbes 30U30)', photo: alumniPranav },
+  { name: 'Srishti Jain Kawatra', title: 'Co-Founder, Zomato Feeding India', photo: alumniSrishti },
+  { name: 'Shivansh Jindal', title: 'Founder, Merchant Records', photo: alumniShivansh },
+  { name: 'Anmol Ahlawat', title: 'Co-Founder, Moxie Beauty', photo: alumniAnmol },
 ]
 
 const alumniStartups = [
-  { name: 'Feeding India', src: brandFeedingIndia },
-  { name: 'Vahdam',        src: brandVahdam },
-  { name: 'Adda247',       src: brandAdda247 },
-  { name: 'Medulance',     src: brandMedulance },
-  { name: 'Moxie Beauty',  src: brandMoxie },
-  { name: 'Khaad',         src: brandKhaad },
-  { name: 'John Jacobs',   src: brandJohnJacobs },
+  { name: 'Feeding India',      src: brandFeedingIndia },
+  { name: 'Vahdam',             src: brandVahdam },
+  { name: 'Adda247',            src: brandAdda247 },
+  { name: 'Medulance',          src: brandMedulance },
+  { name: 'Moxie Beauty',       src: brandMoxie },
+  { name: 'Khaad',              src: brandKhaad },
+  { name: 'John Jacobs',        src: brandJohnJacobs },
+  { name: 'Merchant Records',   src: brandMerchantRecords },
 ]
 
 const events = [
@@ -102,10 +110,10 @@ const events = [
 ]
 
 const whatWeDo = [
-  { title: 'Live Projects',      desc: 'Real consulting work with real companies.',     icon: iconProjects },
-  { title: 'Flagship Events',    desc: "Founder's Forge, E-Summit, and more.",          icon: iconEvent },
-  { title: 'Startup Support',    desc: "Direct line to SIIF's incubation resources.",   icon: iconStartups },
-  { title: 'Founder Community',  desc: 'A network of 3,800+ student entrepreneurs.',    icon: iconCommunity },
+  { title: 'Live Projects',      desc: 'Real consulting work with real companies.',     icon: iconProjects,  to: '/what-we-do#projects' },
+  { title: 'Flagship Events',    desc: "Founder's Forge, E-Summit, and more.",          icon: iconEvent,     to: '/events' },
+  { title: 'Startup Support',    desc: "Direct line to SIIF's incubation resources.",   icon: iconStartups,  to: '/siif' },
+  { title: 'Founder Community',  desc: 'A network of 3,800+ student entrepreneurs.',    icon: iconCommunity, to: '/what-we-do#thinkspace' },
 ]
 
 export default function Home() {
@@ -207,25 +215,21 @@ export default function Home() {
               <div className="about__boxes">
                 <div className="about__box">
                   <img src={yAccelLogo} alt="Y-Accel logo" className="about__box-logo" />
-                  <div className="about__box-content">
-                    <h4 className="about__box-title">Y-ACCEL</h4>
-                    <p className="about__box-text">
-                      Yuva's startup accelerator and consulting wing — market
-                      research, GTM strategy, marketing support, and access to
-                      mentors and investors.
-                    </p>
-                  </div>
+                  <h4 className="about__box-title">Y-ACCEL</h4>
+                  <p className="about__box-text">
+                    Yuva's startup accelerator and consulting wing — market
+                    research, GTM strategy, marketing support, and access to
+                    mentors and investors.
+                  </p>
                 </div>
                 <div className="about__box">
                   <img src={siifLogo} alt="SIIF logo" className="about__box-logo" />
-                  <div className="about__box-content">
-                    <h4 className="about__box-title">Connected to SIIF</h4>
-                    <p className="about__box-text">
-                      SSCBS Innovation and Incubation Foundation empowers startups
-                      through funding, mentorship, and incubation — having backed
-                      80+ ventures with over ₹2.65 crore disbursed.
-                    </p>
-                  </div>
+                  <h4 className="about__box-title">Connected to SIIF</h4>
+                  <p className="about__box-text">
+                    SSCBS Innovation and Incubation Foundation empowers startups
+                    through funding, mentorship, and incubation — having backed
+                    80+ ventures with over ₹2.65 crore disbursed.
+                  </p>
                 </div>
               </div>
             </div>
@@ -241,14 +245,14 @@ export default function Home() {
             <h2 className="section__heading">Four ways we build founders</h2>
           </div>
           <div className="what-we-do__grid">
-            {whatWeDo.map(({ title, desc, icon }) => (
-              <div key={title} className="what-we-do__card">
+            {whatWeDo.map(({ title, desc, icon, to }) => (
+              <Link key={title} to={to} className="what-we-do__card">
                 <div className="what-we-do__icon">
                   <img src={icon} alt="" className="what-we-do__icon-img" aria-hidden="true" />
                 </div>
                 <h3 className="what-we-do__title">{title}</h3>
                 <p className="what-we-do__desc">{desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
