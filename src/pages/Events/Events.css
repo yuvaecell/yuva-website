@@ -157,6 +157,19 @@
   gap: 0.625rem;
 }
 
+/* Per-card logo badge (e.g. Springboard, Impact Week, MilEn) */
+.ev-card__badge-wrap {
+  margin-bottom: 0.25rem;
+}
+
+.ev-card__badge {
+  height: 32px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
 .ev-card__title {
   font-family: var(--font-display);
   font-size: 1.1rem;

@@ -13,6 +13,14 @@ import photoAIMS from '../../assets/photos/events/AIMS.png'
 import photoICICC from '../../assets/photos/events/ICICC.png'
 import photoGlobalProgramme from '../../assets/photos/events/GLOBALPROGRAMME.png'
 import photoNDTV from '../../assets/photos/events/NDTVYUVA.png'
+import photoSpringboard from '../../assets/photos/events/springboard-photo.png'
+import logoSpringboard from '../../assets/logos/events/springboard-logo.png'
+import photoImpactWeek from '../../assets/photos/events/impactweek-photo.png'
+import logoImpactWeek from '../../assets/logos/events/impactweek-logo.png'
+import photoInvestorsDay from '../../assets/photos/events/investorsday-photo.png'
+import photoStartupFood from '../../assets/photos/events/startupfood-photo.png'
+import photoMilen from '../../assets/photos/events/milen-photo.png'
+import logoMilen from '../../assets/logos/events/milen-logo.png'
 import './Events.css'
 
 function useFadeUp() {
@@ -116,15 +124,49 @@ const otherCards = [
     title: 'NDTV Yuva 2026',
     desc: 'Yuva participated in the NDTV Yuva Conclave 2026, presenting startup ideas on a premier national leadership stage alongside prominent changemakers.',
   },
+  {
+    photo: photoSpringboard,
+    logo: logoSpringboard,
+    title: 'Springboard',
+    desc: 'Springboard was a first-of-its-kind global collaboration — a joint initiative between Yuva, SSCBS, and the E-Cell of the National University of Singapore. This global startup ideation challenge was open to all college students, giving them a chance to solve real-life industry challenges. With judges ranging from CEOs to startup founders, the event drew 500+ participants from across the globe.',
+  },
+  {
+    photo: photoImpactWeek,
+    logo: logoImpactWeek,
+    title: 'Impact Week',
+    desc: 'A design thinking workshop organised by Lufthansa in collaboration with SIIF, Yuva, DPSRU, and Ambedkar University — bringing together students to promote innovation and turn ideas into reality.',
+  },
+  {
+    photo: photoInvestorsDay,
+    title: "Investors' Pitch Day",
+    desc: "Organised by SIIF and Yuva, Investors' Pitch Day gave early-stage startups a platform to showcase their ideas and garner investment support from real investors, including Mr. Ravi Kant, Ms. Tanya Kapur (StartupEd), Mr. Karanbir Bhatia (Windrose Capital), Mr. Shivam Ahuja (Angel Investor), Mr. Raghav Sayal (Huddle), and Mr. Vikash Sharma (IC1101). Guest of honour Mr. Saurabh Jain (VP, PayTM) encouraged student entrepreneurs to see entrepreneurship as a state of mind.",
+  },
+  {
+    photo: photoStartupFood,
+    title: 'Startup Food Fest',
+    // TODO Aarav: replace with real Startup Food Fest copy — placeholder text below.
+    desc: 'A Yuva and SIIF initiative bringing together student-run food startups and ventures in a festival format — details to be added.',
+  },
+  {
+    photo: photoMilen,
+    logo: logoMilen,
+    title: 'MilEn',
+    desc: "Held on National Entrepreneurship Day, Mil-En brought together the brightest minds from E-Cells across Delhi — including E-Cell LSR, E-Cell SRCC, and E-Cell IIITD — to network and connect. The day opened with a speaker session by Mr. Himanshu Wardhan, founder of Thevasa and a CBS alum, featured activities like 'Stack-It Startup,' and closed with a musical performance by Dhwani, SSCBS's music society.",
+  },
 ]
 
-function PhotoCard({ photo, title, desc, cardRef }) {
+function PhotoCard({ photo, logo, title, desc, cardRef }) {
   return (
     <article className="ev-card fade-up" ref={cardRef}>
       <div className="ev-card__img-wrap">
         <img src={photo} alt={title} className="ev-card__img" />
       </div>
       <div className="ev-card__body">
+        {logo && (
+          <div className="ev-card__badge-wrap">
+            <img src={logo} alt={`${title} logo`} className="ev-card__badge" />
+          </div>
+        )}
         <h3 className="ev-card__title">{title}</h3>
         <p className="ev-card__desc">{desc}</p>
       </div>
@@ -227,7 +269,7 @@ export default function Events() {
               and international stages throughout the year.
             </p>
           </div>
-          <div className="ev-grid ev-grid--2">
+          <div className="ev-grid ev-grid--3">
             {otherCards.map((card, i) => (
               <PhotoCard
                 key={card.title}
