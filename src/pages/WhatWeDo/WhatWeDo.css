@@ -435,9 +435,10 @@
   background-color: var(--white);
 }
 
-/* Before GSAP sets position:absolute, slides stack; only first visible */
+/* Before GSAP sets position:absolute, slides stack; only first visible/interactive */
 .proj-pin-outer .proj-slide:not(:first-child) {
   opacity: 0;
+  pointer-events: none;
 }
 
 .proj-slide {

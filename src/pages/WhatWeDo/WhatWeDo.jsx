@@ -246,13 +246,14 @@ export default function WhatWeDo() {
     const dots     = dotRefs.current.filter(Boolean)
     if (!pinOuter || slides.length < 2) return
 
-    // Stack all slides; only the first is visible initially
+    // Stack all slides; only the first is visible and interactive initially
     slides.forEach((slide, i) => {
       gsap.set(slide, {
         position: 'absolute',
         inset: 0,
         opacity: i === 0 ? 1 : 0,
         y: i === 0 ? 0 : 32,
+        pointerEvents: i === 0 ? 'auto' : 'none',
       })
     })
 
@@ -269,7 +270,8 @@ export default function WhatWeDo() {
       })
     })
 
-    // Build a sequential crossfade timeline
+    // Build a sequential fade timeline (one card fully out before the next fades in,
+    // preventing simultaneous partial-opacity overlap / text bleed between cards)
     const tl = gsap.timeline()
     slides.forEach((slide, i) => {
       if (i === 0) return
@@ -277,8 +279,8 @@ export default function WhatWeDo() {
       tl.to(slides[i - 1], { opacity: 0, y: -24, duration: 0.4, ease: 'power2.inOut' })
       if (logos[i - 1]) tl.to(logos[i - 1], { scale: 0.88, opacity: 0, duration: 0.3, ease: 'power2.in' }, '<')
       if (dots[i - 1])  tl.to(dots[i - 1],  { backgroundColor: '#6B7684', opacity: 0.3, duration: 0.2 }, '<')
-      // Fade in current slide + logo, activate its dot
-      tl.to(slide, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.inOut' }, '<0.05')
+      // Fade in current slide + logo, activate its dot (sequential — starts after prev fully out)
+      tl.to(slide, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.inOut' })
       if (logos[i]) tl.to(logos[i], { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' }, '<0.1')
       if (dots[i])  tl.to(dots[i],  { backgroundColor: '#1D5B96', opacity: 1, duration: 0.2 }, '<0.1')
     })
@@ -292,6 +294,14 @@ export default function WhatWeDo() {
       scrub:   0.9,
       animation: tl,
       anticipatePin: 1,
+      // Keep exactly the active card interactive; inactive cards at opacity:0
+      // must not intercept clicks even though they share the same absolute position
+      onUpdate: (self) => {
+        const activeIndex = Math.round(self.progress * (slides.length - 1))
+        slides.forEach((slide, i) => {
+          slide.style.pointerEvents = i === activeIndex ? 'auto' : 'none'
+        })
+      },
     })
 
     return () => {
