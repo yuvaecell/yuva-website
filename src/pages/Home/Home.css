@@ -142,11 +142,67 @@
   }
 }
 
+/* Hero photo overlay wrapper (contains photo + scrim + text) */
+.hero__photo-overlay-wrap {
+  position: relative;
+  width: 100%;
+  max-width: clamp(340px, 50vw, 580px);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transform: rotate(1.5deg);
+  box-shadow: 0 12px 40px rgba(16, 24, 43, 0.15);
+}
+
+.hero__photo-overlay-wrap .hero__photo {
+  width: 100%;
+  height: auto;
+  max-width: none;
+  transform: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.hero__photo-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 24, 50, 0.75) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.hero__photo-text {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  pointer-events: none;
+}
+
+.hero__photo-text span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 767px) {
+  .hero__photo-overlay-wrap {
+    max-width: 100%;
+    transform: none;
+  }
+}
+
 /* ── Dark building-bg overrides ──────────────────────────── */
 
 /* 1. Hero on dark bg */
 .hero.bg-buildings {
-  background-color: var(--ink); /* fallback if photo fails */
+  background-color: var(--y-blue-dark); /* fallback if photo fails */
 }
 
 .hero.bg-buildings .eyebrow { color: rgba(246, 244, 238, 0.58); }
@@ -166,7 +222,7 @@
 
 /* 3. About on dark bg */
 .about.bg-buildings {
-  background-color: var(--ink);
+  background-color: var(--y-blue-dark);
 }
 
 .about.bg-buildings .eyebrow { color: rgba(246, 244, 238, 0.58); }
@@ -188,7 +244,7 @@
 
 /* 7. Alumni on dark bg */
 .alumni.bg-buildings {
-  background-color: var(--ink);
+  background-color: var(--y-blue-dark);
 }
 
 .alumni.bg-buildings .eyebrow { color: rgba(246, 244, 238, 0.58); }
@@ -296,16 +352,25 @@
   border: 1px solid rgba(16, 24, 43, 0.1);
   border-left: 3px solid var(--y-blue);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 1.125rem 1rem;
+  padding: 1.25rem 1rem;
   background-color: var(--paper);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1rem;
 }
 
 .about__box-logo {
-  height: 36px;
+  height: 64px;
   width: auto;
   object-fit: contain;
   display: block;
-  margin-bottom: 0.625rem;
+  flex-shrink: 0;
+}
+
+.about__box-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .about__box-title {
@@ -321,6 +386,13 @@
   font-size: 0.825rem;
   color: var(--slate);
   line-height: 1.6;
+}
+
+@media (max-width: 500px) {
+  .about__box {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
 
 /* ── 4. WHAT WE DO ───────────────────────────────────────── */

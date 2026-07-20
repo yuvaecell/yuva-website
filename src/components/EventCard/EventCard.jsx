@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
 import './EventCard.css'
 
-export default function EventCard({ tag, title, description, href = '#', logo, logoAlt }) {
+export default function EventCard({ tag, title, description, to, logo, logoAlt }) {
   return (
     <article className="event-card">
       <div className="event-card__header">
@@ -11,9 +12,9 @@ export default function EventCard({ tag, title, description, href = '#', logo, l
       </div>
       <h3 className="event-card__title">{title}</h3>
       <p className="event-card__desc">{description}</p>
-      <a href={href} className="event-card__link">
+      <Link to={to || '/events'} className="event-card__link">
         Learn more →
-      </a>
+      </Link>
     </article>
   )
 }

@@ -1,11 +1,12 @@
+import { User, Share2, Briefcase, Rocket } from 'lucide-react'
 import buildingPhoto from '../../assets/photos/buildings.png'
 import './StatBlock.css'
 
 const stats = [
-  { value: '1,00,000+', label: 'Student Impressions', initial: 'SI' },
-  { value: '70,000+', label: 'Social Media Reach', initial: 'SM' },
-  { value: '100+', label: 'Partner Organisations', initial: 'PO' },
-  { value: '30+', label: 'Startup Ventures', initial: 'SV' },
+  { value: '1,00,000+', label: 'Student Impressions', Icon: User },
+  { value: '70,000+',   label: 'Social Media Reach',  Icon: Share2 },
+  { value: '100+',      label: 'Partner Organisations', Icon: Briefcase },
+  { value: '30+',       label: 'Startup Ventures',    Icon: Rocket },
 ]
 
 export default function StatBlock() {
@@ -16,10 +17,10 @@ export default function StatBlock() {
     >
       <div className="container">
         <div className="statblock__grid">
-          {stats.map(({ value, label, initial }) => (
+          {stats.map(({ value, label, Icon }) => (
             <div key={label} className="statblock__item">
               <div className="statblock__icon" aria-hidden="true">
-                {initial}
+                <Icon size={24} strokeWidth={1.5} />
               </div>
               <p className="statblock__value">{value}</p>
               <p className="statblock__label">{label}</p>

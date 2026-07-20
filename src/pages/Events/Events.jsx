@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useLocation } from 'react-router-dom'
 import buildingPhoto from '../../assets/photos/buildings.png'
 import esummitLogo from '../../assets/logos/events/ESUMMIT.png'
 import forgeLogo from '../../assets/logos/events/FOUNDERSFORGE.png'
@@ -176,6 +177,17 @@ function PhotoCard({ photo, logo, title, desc, cardRef }) {
 
 export default function Events() {
   const bgStyle = { backgroundImage: `url(${buildingPhoto})` }
+  const location = useLocation()
+
+  // Scroll to anchored section when navigating with a hash
+  useEffect(() => {
+    if (!location.hash) return
+    const id = location.hash.slice(1)
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+  }, [location.hash])
 
   const headerRef    = useFadeUp()
   const esummitRef   = useFadeUp()
@@ -205,7 +217,7 @@ export default function Events() {
       </section>
 
       {/* ── 2. E-SUMMIT '26 — dark building bg ─────────────────── */}
-      <section className="ev-section bg-buildings" style={bgStyle}>
+      <section id="e-summit" className="ev-section bg-buildings" style={bgStyle}>
         <div className="container">
           <div className="fade-up" ref={esummitRef}>
             <div className="ev-section__brand">
@@ -232,7 +244,7 @@ export default function Events() {
       </section>
 
       {/* ── 3. FOUNDER'S FORGE 2.0 — paper bg ─────────────────── */}
-      <section className="ev-section ev-section--light">
+      <section id="founders-forge" className="ev-section ev-section--light">
         <div className="container">
           <div className="fade-up" ref={forgeRef}>
             <div className="ev-section__brand">
@@ -259,7 +271,7 @@ export default function Events() {
       </section>
 
       {/* ── 4. OTHER EVENTS — dark building bg ─────────────────── */}
-      <section className="ev-section bg-buildings" style={bgStyle}>
+      <section id="other-events" className="ev-section bg-buildings" style={bgStyle}>
         <div className="container">
           <div className="fade-up" ref={otherRef}>
             <span className="eyebrow">Beyond the Campus</span>

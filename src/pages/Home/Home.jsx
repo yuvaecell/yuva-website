@@ -81,6 +81,7 @@ const events = [
       "Our annual celebration of innovation — featuring Udyami 5.0, a Shark Tank-style pitch competition, and global speaker panels.",
     logo: esummitLogo,
     logoAlt: "E-Summit logo",
+    to: "/events#e-summit",
   },
   {
     tag: "Bootcamp",
@@ -89,12 +90,14 @@ const events = [
       "A hands-on bootcamp in design thinking, pitching, and startup fundamentals, run in association with SIIF.",
     logo: foundersLogo,
     logoAlt: "Founder's Forge logo",
+    to: "/events#founders-forge",
   },
   {
     tag: "International",
     title: "Global Perspectives on Entrepreneurship",
     description:
       "An international panel bringing together founders and experts from Japan, Australia, Vietnam, and India.",
+    to: "/events#e-summit",
   },
 ]
 
@@ -132,16 +135,23 @@ export default function Home() {
             </p>
             <div className="hero__actions">
               <a href="#site-footer" className="btn btn--primary">Contact us</a>
-              <a href="#what-we-do" className="btn btn--outline">What we do</a>
+              <Link to="/what-we-do" className="btn btn--outline">What we do</Link>
             </div>
           </div>
 
           <div className="hero__photo-wrap">
-            <img
-              src={teamPhoto}
-              alt="Yuva team at E-Cell"
-              className="hero__photo"
-            />
+            <div className="hero__photo-overlay-wrap">
+              <img
+                src={teamPhoto}
+                alt="Yuva team at E-Cell"
+                className="hero__photo"
+              />
+              <div className="hero__photo-scrim" aria-hidden="true" />
+              <div className="hero__photo-text" aria-hidden="true">
+                <span>Building</span>
+                <span>Founders</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -197,21 +207,25 @@ export default function Home() {
               <div className="about__boxes">
                 <div className="about__box">
                   <img src={yAccelLogo} alt="Y-Accel logo" className="about__box-logo" />
-                  <h4 className="about__box-title">Y-ACCEL</h4>
-                  <p className="about__box-text">
-                    Yuva's startup accelerator and consulting wing — market
-                    research, GTM strategy, marketing support, and access to
-                    mentors and investors.
-                  </p>
+                  <div className="about__box-content">
+                    <h4 className="about__box-title">Y-ACCEL</h4>
+                    <p className="about__box-text">
+                      Yuva's startup accelerator and consulting wing — market
+                      research, GTM strategy, marketing support, and access to
+                      mentors and investors.
+                    </p>
+                  </div>
                 </div>
                 <div className="about__box">
                   <img src={siifLogo} alt="SIIF logo" className="about__box-logo" />
-                  <h4 className="about__box-title">Connected to SIIF</h4>
-                  <p className="about__box-text">
-                    SSCBS Innovation and Incubation Foundation empowers startups
-                    through funding, mentorship, and incubation — having backed
-                    80+ ventures with over ₹2.65 crore disbursed.
-                  </p>
+                  <div className="about__box-content">
+                    <h4 className="about__box-title">Connected to SIIF</h4>
+                    <p className="about__box-text">
+                      SSCBS Innovation and Incubation Foundation empowers startups
+                      through funding, mentorship, and incubation — having backed
+                      80+ ventures with over ₹2.65 crore disbursed.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
