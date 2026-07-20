@@ -143,16 +143,16 @@ const otherCards = [
     desc: "Organised by SIIF and Yuva, Investors' Pitch Day gave early-stage startups a platform to showcase their ideas and garner investment support from real investors, including Mr. Ravi Kant, Ms. Tanya Kapur (StartupEd), Mr. Karanbir Bhatia (Windrose Capital), Mr. Shivam Ahuja (Angel Investor), Mr. Raghav Sayal (Huddle), and Mr. Vikash Sharma (IC1101). Guest of honour Mr. Saurabh Jain (VP, PayTM) encouraged student entrepreneurs to see entrepreneurship as a state of mind.",
   },
   {
-    photo: photoStartupFood,
-    title: 'Startup Food Fest',
-    // TODO Aarav: replace with real Startup Food Fest copy — placeholder text below.
-    desc: 'A Yuva and SIIF initiative bringing together student-run food startups and ventures in a festival format — details to be added.',
-  },
-  {
     photo: photoMilen,
     logo: logoMilen,
     title: 'MilEn',
     desc: "Held on National Entrepreneurship Day, Mil-En brought together the brightest minds from E-Cells across Delhi — including E-Cell LSR, E-Cell SRCC, and E-Cell IIITD — to network and connect. The day opened with a speaker session by Mr. Himanshu Wardhan, founder of Thevasa and a CBS alum, featured activities like 'Stack-It Startup,' and closed with a musical performance by Dhwani, SSCBS's music society.",
+  },
+  {
+    photo: photoStartupFood,
+    title: 'Startup Food Fest',
+    // TODO Aarav: replace with real Startup Food Fest copy — placeholder text below.
+    desc: 'A Yuva and SIIF initiative bringing together student-run food startups and ventures in a festival format — details to be added.',
   },
 ]
 

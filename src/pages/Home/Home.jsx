@@ -27,6 +27,25 @@ import iconProjects from '../../assets/logos/what-we-do/projects.png'
 import iconEvent from '../../assets/logos/what-we-do/event.png'
 import iconStartups from '../../assets/logos/what-we-do/startups.png'
 import iconCommunity from '../../assets/logos/what-we-do/community.png'
+import partnerAmex from '../../assets/logos/partners/AMEX.png'
+import partnerItc from '../../assets/logos/partners/ITC.png'
+import partnerPepsico from '../../assets/logos/partners/PEPSICO.png'
+import partnerSuprajit from '../../assets/logos/partners/SUPRAJIT.png'
+import partnerIndigo from '../../assets/logos/partners/INDIGO.png'
+import partnerCnbc from '../../assets/logos/partners/CNBC.png'
+import partnerCocaCola from '../../assets/logos/partners/COCACOLA.png'
+import partnerCornitos from '../../assets/logos/partners/CORNITOS.png'
+import partnerGoev from '../../assets/logos/partners/GOEV.png'
+import partnerHyatt from '../../assets/logos/partners/HYATT.png'
+import partnerIndiaAccelerator from '../../assets/logos/partners/INDIANACCELERATOR.png'
+import partnerIndianAngel from '../../assets/logos/partners/INDIANANGELINVESTOR.png'
+import partnerLufthansa from '../../assets/logos/partners/LUFTHANSA.png'
+import partnerMccain from '../../assets/logos/partners/MCAIN.png'
+import partnerNdtv from '../../assets/logos/partners/NDTV.png'
+import partnerNus from '../../assets/logos/partners/NUS.png'
+import partnerPaytm from '../../assets/logos/partners/PAYTM.png'
+import partnerPeesafe from '../../assets/logos/partners/PEESAFE.png'
+import partnerZomato from '../../assets/logos/partners/ZOMATO.png'
 import Marquee from '../../components/Marquee/Marquee'
 import StatBlock from '../../components/StatBlock/StatBlock'
 import EventCard from '../../components/EventCard/EventCard'
@@ -109,6 +128,28 @@ const events = [
   },
 ]
 
+const partners = [
+  { name: 'American Express',       src: partnerAmex },
+  { name: 'PepsiCo',                src: partnerPepsico },
+  { name: 'ITC',                    src: partnerItc },
+  { name: 'Suprajit Engineering',   src: partnerSuprajit },
+  { name: 'IndiGo',                 src: partnerIndigo },
+  { name: 'McCain Foods',           src: partnerMccain },
+  { name: 'Pee Safe',               src: partnerPeesafe },
+  { name: 'Hyatt',                  src: partnerHyatt },
+  { name: 'India Accelerator',      src: partnerIndiaAccelerator },
+  { name: 'Indian Angel Network',   src: partnerIndianAngel },
+  { name: 'NDTV',                   src: partnerNdtv },
+  { name: 'GoEV Mobility',          src: partnerGoev },
+  { name: 'Coca-Cola',              src: partnerCocaCola },
+  { name: 'Lufthansa',              src: partnerLufthansa },
+  { name: 'Cornitos',               src: partnerCornitos },
+  { name: 'Zomato',                 src: partnerZomato },
+  { name: 'Paytm',                  src: partnerPaytm },
+  { name: 'CNBC',                   src: partnerCnbc },
+  { name: 'NUS',                    src: partnerNus },
+]
+
 const whatWeDo = [
   { title: 'Live Projects',      desc: 'Real consulting work with real companies.',     icon: iconProjects,  to: '/what-we-do#projects' },
   { title: 'Flagship Events',    desc: "Founder's Forge, E-Summit, and more.",          icon: iconEvent,     to: '/events' },
@@ -156,8 +197,8 @@ export default function Home() {
               />
               <div className="hero__photo-scrim" aria-hidden="true" />
               <div className="hero__photo-text" aria-hidden="true">
-                <span>Building</span>
-                <span>Founders</span>
+                <span className="hero__photo-text--caps">THE</span>
+                <span className="hero__photo-text--script">Misfits</span>
               </div>
             </div>
           </div>
@@ -313,10 +354,11 @@ export default function Home() {
             <span className="eyebrow">Our Partners</span>
             <h2 className="section__heading">Who we've worked with</h2>
           </div>
-          {/* Aarav: drop partner logos here once you have them (Amex, PepsiCo, ITC, HSBC, etc.) */}
           <div className="partners__grid">
-            {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className="partners__logo-box" aria-hidden="true" />
+            {partners.map(({ name, src }) => (
+              <div key={name} className="partners__logo-box">
+                <img src={src} alt={name} className="partners__logo-img" />
+              </div>
             ))}
           </div>
         </div>

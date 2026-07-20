@@ -14,6 +14,21 @@ import logoAmex from '../../assets/logos/projects/AMEX.png'
 import logoPepsico from '../../assets/logos/projects/PEPSICO.png'
 import logoItc from '../../assets/logos/projects/ITC.png'
 import logoSuprajit from '../../assets/logos/projects/SUPRAJIT.png'
+import logoIndigo from '../../assets/logos/projects/INDIGO.png'
+import logoMccain from '../../assets/logos/projects/MCCAIN.png'
+import logoPeesafe from '../../assets/logos/projects/PEESAFE.png'
+import pastHyatt from '../../assets/logos/partners/HYATT.png'
+import pastIndiaAccelerator from '../../assets/logos/partners/INDIANACCELERATOR.png'
+import pastIndianAngel from '../../assets/logos/partners/INDIANANGELINVESTOR.png'
+import pastNdtv from '../../assets/logos/partners/NDTV.png'
+import pastGoev from '../../assets/logos/partners/GOEV.png'
+import pastCocaCola from '../../assets/logos/partners/COCACOLA.png'
+import pastLufthansa from '../../assets/logos/partners/LUFTHANSA.png'
+import pastCornitos from '../../assets/logos/partners/CORNITOS.png'
+import pastZomato from '../../assets/logos/partners/ZOMATO.png'
+import pastPaytm from '../../assets/logos/partners/PAYTM.png'
+import pastCnbc from '../../assets/logos/partners/CNBC.png'
+import pastNus from '../../assets/logos/partners/NUS.png'
 import './WhatWeDo.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -101,6 +116,23 @@ const currentProjects = [
   },
 ]
 
+const pastBrands = [
+  { name: 'IndiGo',                logo: logoIndigo },
+  { name: 'McCain Foods India',    logo: logoMccain },
+  { name: 'PeeSafe',               logo: logoPeesafe },
+  { name: 'Hyatt',                 logo: pastHyatt },
+  { name: 'India Accelerator',     logo: pastIndiaAccelerator },
+  { name: 'Indian Angel Network',  logo: pastIndianAngel },
+  { name: 'NDTV',                  logo: pastNdtv },
+  { name: 'GoEV Mobility',         logo: pastGoev },
+  { name: 'Coca-Cola',             logo: pastCocaCola },
+  { name: 'Lufthansa',             logo: pastLufthansa },
+  { name: 'Cornitos',              logo: pastCornitos },
+  { name: 'Zomato',                logo: pastZomato },
+  { name: 'Paytm',                 logo: pastPaytm },
+  { name: 'CNBC',                  logo: pastCnbc },
+  { name: 'NUS',                   logo: pastNus },
+]
 
 // ─── Hooks ───────────────────────────────────────────────────────
 
@@ -165,6 +197,7 @@ export default function WhatWeDo() {
   const servicesRef    = useFadeUp()
   const compHeaderRef  = useFadeUp()
   const thinkspaceRef  = useFadeUp()
+  const pastHeaderRef  = useFadeUp()
   const ctaRef         = useFadeUp()
 
   // Scroll to anchored section when navigating with a hash
@@ -483,7 +516,28 @@ export default function WhatWeDo() {
         </div>
       </section>
 
-      {/* ── 6. CLOSING CTA ───────────────────────────────────── */}
+      {/* ── 6. PAST PROJECTS LOGO GRID — plain bg ────────────── */}
+      <section className="wwd-section wwd-past">
+        <div className="container">
+          <div className="fade-up" ref={pastHeaderRef}>
+            <span className="eyebrow">Past Projects &amp; Engagements</span>
+            <h2 className="wwd-section__heading">A longer track record</h2>
+          </div>
+          <div className="past-grid">
+            {pastBrands.map(({ name, logo }) => (
+              <div key={name} className="past-logo-box">
+                {logo ? (
+                  <img src={logo} alt={name} className="past-logo-img" />
+                ) : (
+                  <span className="past-logo-placeholder">{name}</span>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. CLOSING CTA ───────────────────────────────────── */}
       <section className="wwd-cta">
         <div className="container">
           <div className="wwd-cta__inner fade-up" ref={ctaRef}>
