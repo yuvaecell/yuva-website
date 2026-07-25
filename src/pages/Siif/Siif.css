@@ -19,7 +19,7 @@
 
 .siif-section__heading {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--ink);
   margin-bottom: 2rem;
   max-width: 640px;
@@ -74,7 +74,7 @@
 
 .siif-hero__heading {
   font-size: clamp(2.25rem, 4.5vw, 3.5rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--white);
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -295,7 +295,7 @@
 .siif-offer-card__title {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--ink);
   line-height: 1.25;
 }
@@ -351,7 +351,7 @@
 
 .siif-cta__heading {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--white);
   margin-bottom: 1rem;
 }

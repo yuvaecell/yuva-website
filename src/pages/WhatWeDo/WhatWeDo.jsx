@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   Search, FlaskConical, BarChart3, Users, Coins,
-  Briefcase, LineChart, Sparkles, ShieldCheck, Presentation,
+  Briefcase, LineChart, Sparkles, ShieldCheck, Lightbulb,
 } from 'lucide-react'
 import buildingPhoto from '../../assets/photos/buildings.png'
 import photoThinkspace from '../../assets/photos/thinkspace.png'
@@ -83,8 +83,8 @@ const competencies = [
   { Icon: Search,       label: 'Market Research' },
   { Icon: LineChart,    label: 'Data Driven Analysis' },
   { Icon: Sparkles,     label: 'Gen-Z Perspective' },
-  { Icon: ShieldCheck,  label: 'Due Diligence Services' },
-  { Icon: Presentation, label: 'Deck Designing' },
+  { Icon: ShieldCheck, label: 'Due Diligence Services' },
+  { Icon: Lightbulb,   label: 'ThinkSpace' },
 ]
 
 const currentProjects = [

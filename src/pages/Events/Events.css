@@ -20,7 +20,7 @@
 
 .ev-header__heading {
   font-size: clamp(2.25rem, 5vw, 3.75rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--ink);
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -65,7 +65,7 @@
 
 .ev-section__heading {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--ink);
   margin-bottom: 0.875rem;
   max-width: 640px;
@@ -173,7 +173,7 @@
 .ev-card__title {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  font-weight: 500;
+  font-weight: 700;
   color: var(--ink);
   line-height: 1.25;
 }
@@ -204,7 +204,7 @@
 
 .ev-cta__heading {
   font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--white);
   margin-bottom: 0.875rem;
 }
