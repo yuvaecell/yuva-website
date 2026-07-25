@@ -11,6 +11,7 @@ import logoCornell     from '../../assets/logos/case-comps/CORNELL.png'
 import logoMelbourne   from '../../assets/logos/case-comps/MELBOURNE.png'
 import logoBain        from '../../assets/logos/case-comps/BAIN.png'
 import logoHighbridge  from '../../assets/logos/case-comps/HIGHBRIDGE.png'
+import logoHarvard     from '../../assets/logos/case-comps/HARVARD.jpeg'
 
 // "More competitions" logos
 import logoAdg   from '../../assets/logos/case-comps/ADG.png'
@@ -95,7 +96,7 @@ const achievements = [
     desc: "We emerged as the National Winners at the prestigious HSBC/HKU Asia Pacific Business Case Competition, one of the world's largest undergraduate case competitions with 8,000+ participants. The victory earned the team the opportunity to represent India at the Global Finals in Hong Kong. The following year, we built on this success by once again qualifying for the National Finals.",
   },
   {
-    logo: null, // Harvard logo not found — text placeholder used (flagged in summary)
+    logo: logoHarvard,
     alt: 'Harvard University',
     title: 'Harvard Global Case Competition',
     badge: 'Global Rank 3',
@@ -228,7 +229,7 @@ export default function Achievements() {
       </section>
 
       {/* ── 3. MORE COMPETITIONS ─────────────────────────────────── */}
-      <section className="ach-section ach-more">
+      <section className="ach-section ach-more" style={bgStyle}>
         <div className="container">
           <div className="fade-up" ref={moreRef}>
             <h2 className="ach-section__heading">More competitions</h2>

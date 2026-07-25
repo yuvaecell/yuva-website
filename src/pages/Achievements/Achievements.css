@@ -155,7 +155,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
   transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -168,15 +168,15 @@
 }
 
 .ach-card__logo-wrap {
-  height: 52px;
+  height: 72px;
   display: flex;
   align-items: center;
 }
 
 .ach-card__logo {
-  height: 44px;
+  height: 64px;
   width: auto;
-  max-width: 160px;
+  max-width: 220px;
   object-fit: contain;
   display: block;
 }
@@ -196,7 +196,7 @@
   border: 1px solid rgba(16, 24, 43, 0.18);
   border-radius: var(--radius-sm);
   padding: 0.4rem 0.65rem;
-  height: 44px;
+  height: 64px;
   justify-content: center;
 }
 
@@ -230,7 +230,33 @@
 
 /* ── 3. MORE COMPETITIONS ────────────────────────────────────── */
 .ach-more {
-  background-color: var(--white);
+  background-color: var(--ink);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.ach-more::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(18, 62, 104, 0.85);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ach-more .container {
+  position: relative;
+  z-index: 1;
+}
+
+.ach-more .ach-section__heading {
+  color: var(--white);
+}
+
+.ach-more .ach-section__sub {
+  color: rgba(246, 244, 238, 0.72);
 }
 
 .ach-more-grid {
