@@ -1,0 +1,195 @@
+/* ══════════════════════════════════════════════════════════════
+   AnnualReportViewer — embedded PDF viewer
+   ══════════════════════════════════════════════════════════════ */
+
+.arv {
+  border: 1px solid rgba(16, 24, 43, 0.12);
+  border-radius: var(--radius-md);
+  background-color: var(--white);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Controls bar ────────────────────────────────────────────── */
+.arv__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid rgba(16, 24, 43, 0.1);
+  background-color: var(--paper);
+  flex-wrap: wrap;
+}
+
+.arv__controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.arv__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid rgba(29, 91, 150, 0.25);
+  background-color: var(--white);
+  color: var(--y-blue);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  flex-shrink: 0;
+}
+
+.arv__btn:hover:not(:disabled) {
+  background-color: var(--y-blue);
+  border-color: var(--y-blue);
+  color: var(--white);
+}
+
+.arv__btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.arv__page-counter,
+.arv__zoom-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  min-width: 3.5rem;
+  text-align: center;
+  user-select: none;
+}
+
+/* ── Canvas area ─────────────────────────────────────────────── */
+.arv__canvas-wrap {
+  /* Reserve height so the page doesn't jump when the PDF loads */
+  min-height: 540px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 1.5rem;
+  background-color: #e8e8ec;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 680px;
+}
+
+/* react-pdf Document wrapper — let it size naturally */
+.arv__canvas-wrap .react-pdf__Document {
+  display: flex;
+  justify-content: center;
+}
+
+/* Drop shadow on the rendered page */
+.arv__canvas-wrap .react-pdf__Page {
+  box-shadow: 0 4px 24px rgba(16, 24, 43, 0.18);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+/* ── Loading skeleton ────────────────────────────────────────── */
+.arv__skeleton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.arv__skeleton-page {
+  width: min(600px, 100%);
+  aspect-ratio: 1 / 1.414; /* A4 proportions */
+  background: linear-gradient(
+    90deg,
+    rgba(16, 24, 43, 0.06) 25%,
+    rgba(16, 24, 43, 0.1) 50%,
+    rgba(16, 24, 43, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: arv-shimmer 1.4s infinite ease-in-out;
+  border-radius: 2px;
+  box-shadow: 0 4px 24px rgba(16, 24, 43, 0.15);
+}
+
+@keyframes arv-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arv__skeleton-page {
+    animation: none;
+    background: rgba(16, 24, 43, 0.07);
+  }
+}
+
+/* ── Error state ─────────────────────────────────────────────── */
+.arv__error {
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.arv__error p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--slate);
+  line-height: 1.6;
+}
+
+/* ── Footer / Download ───────────────────────────────────────── */
+.arv__footer {
+  padding: 0.875rem 1.25rem;
+  border-top: 1px solid rgba(16, 24, 43, 0.1);
+  background-color: var(--paper);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.arv__download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--y-blue);
+  text-decoration: none;
+  padding: 0.45rem 0.875rem;
+  border: 1.5px solid rgba(29, 91, 150, 0.25);
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.arv__download:hover {
+  background-color: var(--y-blue);
+  color: var(--white);
+  border-color: var(--y-blue);
+}
+
+/* ── Mobile adjustments ──────────────────────────────────────── */
+@media (max-width: 600px) {
+  .arv__controls {
+    gap: 0.75rem;
+    padding: 0.625rem 1rem;
+  }
+
+  .arv__canvas-wrap {
+    padding: 1rem 0.75rem;
+    min-height: 380px;
+    max-height: 520px;
+  }
+
+  .arv__footer {
+    justify-content: center;
+  }
+}
