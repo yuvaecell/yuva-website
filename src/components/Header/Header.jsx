@@ -6,6 +6,7 @@ import './Header.css'
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Annual Report', to: '/about' },
+  { label: 'Achievements', to: '/achievements' },
   { label: 'What We Do', to: '/what-we-do' },
   { label: 'Events', to: '/events' },
   { label: 'SIIF', to: '/siif' },

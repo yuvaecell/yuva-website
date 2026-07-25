@@ -1,0 +1,346 @@
+/* ═══════════════════════════════════════════════════════════════
+   Achievements page
+   ═══════════════════════════════════════════════════════════════ */
+
+.ach-page {
+  background-color: var(--paper);
+}
+
+/* ── 1. HERO ─────────────────────────────────────────────────── */
+.ach-hero {
+  padding: 6rem 0 6.5rem;
+}
+
+@media (max-width: 767px) {
+  .ach-hero {
+    padding: 4rem 0 4.5rem;
+  }
+}
+
+.ach-hero__heading {
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  max-width: 640px;
+}
+
+.ach-hero__sub {
+  font-size: 1.05rem;
+  color: var(--slate);
+  line-height: 1.65;
+  max-width: 480px;
+}
+
+/* Light text on dark bg */
+.bg-buildings .ach-hero__heading { color: var(--white); }
+.bg-buildings .ach-hero__sub     { color: rgba(246, 244, 238, 0.72); }
+
+/* ── Shared section primitives ───────────────────────────────── */
+.ach-section {
+  padding: 5.5rem 0;
+}
+
+@media (max-width: 767px) {
+  .ach-section {
+    padding: 3.5rem 0;
+  }
+}
+
+.ach-section__heading {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.ach-section__sub {
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.65;
+  max-width: 540px;
+  margin-bottom: 3.5rem;
+}
+
+/* ── 2. TIMELINE ─────────────────────────────────────────────── */
+.ach-major {
+  background-color: var(--paper);
+}
+
+.ach-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* Vertical center line */
+.ach-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(29, 91, 150, 0.18) 4%,
+    rgba(29, 91, 150, 0.18) 96%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* ── Timeline row ────────────────────────────────────────────── */
+.ach-row {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  grid-template-areas: "card center ghost";
+  align-items: center;
+}
+
+.ach-row--right {
+  grid-template-areas: "ghost center card";
+}
+
+.ach-card        { grid-area: card; }
+.ach-row__center { grid-area: center; }
+.ach-ghost       { grid-area: ghost; }
+
+/* ── Center dot ──────────────────────────────────────────────── */
+.ach-row__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.ach-row__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: var(--y-blue);
+  border: 2.5px solid var(--paper);
+  box-shadow: 0 0 0 1.5px rgba(29, 91, 150, 0.35);
+  flex-shrink: 0;
+  display: block;
+}
+
+/* ── Ghost numeral ───────────────────────────────────────────── */
+.ach-ghost {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 9vw, 120px);
+  font-weight: 700;
+  color: var(--y-blue-dark);
+  opacity: 0.07;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+}
+
+.ach-row--left  .ach-ghost { justify-content: flex-start; padding-left: 0.75rem; }
+.ach-row--right .ach-ghost { justify-content: flex-end;   padding-right: 0.75rem; }
+
+/* ── Achievement card ────────────────────────────────────────── */
+.ach-card {
+  background-color: var(--white);
+  border: 1px solid rgba(16, 24, 43, 0.1);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.ach-row--left  .ach-card { margin-right: 0.5rem; }
+.ach-row--right .ach-card { margin-left: 0.5rem; }
+
+.ach-card:hover {
+  border-color: var(--y-blue);
+  transform: translateY(-2px);
+}
+
+.ach-card__logo-wrap {
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.ach-card__logo {
+  height: 44px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Text placeholder for missing logo (Harvard) */
+.ach-logo-placeholder {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--slate);
+  line-height: 1.5;
+  border: 1px solid rgba(16, 24, 43, 0.18);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.65rem;
+  height: 44px;
+  justify-content: center;
+}
+
+.ach-card__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  background-color: rgba(29, 91, 150, 0.09);
+  color: var(--y-blue);
+  border-radius: 100px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  align-self: flex-start;
+}
+
+.ach-card__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.ach-card__desc {
+  font-size: 0.875rem;
+  color: var(--slate);
+  line-height: 1.75;
+}
+
+/* ── 3. MORE COMPETITIONS ────────────────────────────────────── */
+.ach-more {
+  background-color: var(--white);
+}
+
+.ach-more-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 767px) {
+  .ach-more-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 479px) {
+  .ach-more-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.ach-more-box {
+  aspect-ratio: 2 / 1;
+  border: 1px solid rgba(16, 24, 43, 0.1);
+  border-radius: var(--radius-sm);
+  background-color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  transition: border-color 0.2s ease;
+}
+
+.ach-more-box:hover {
+  border-color: rgba(16, 24, 43, 0.22);
+}
+
+.ach-more-logo {
+  height: 52px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE — Mobile (single-column timeline)
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+  /* Shift the timeline line to the left edge */
+  .ach-timeline::before {
+    left: 10px;
+    transform: none;
+  }
+
+  /* Collapse the 3-col grid to a single-column card layout */
+  .ach-row,
+  .ach-row--left,
+  .ach-row--right {
+    display: block;
+    position: relative;
+    padding-left: 32px;
+  }
+
+  /* Hide the center-column dot wrapper — replaced by a left-edge pseudo dot */
+  .ach-row__center {
+    display: none;
+  }
+
+  /* Left-edge dot on mobile */
+  .ach-row::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: var(--y-blue);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 1.5px rgba(29, 91, 150, 0.3);
+  }
+
+  /* Reset card margins */
+  .ach-row--left  .ach-card,
+  .ach-row--right .ach-card {
+    margin: 0;
+  }
+
+  /* Ghost numeral: float behind the card as a faint watermark */
+  .ach-ghost {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translateY(-50%);
+    font-size: 64px;
+    opacity: 0.05;
+    padding: 0;
+    pointer-events: none;
+    grid-area: unset;
+  }
+
+  .ach-row--left  .ach-ghost,
+  .ach-row--right .ach-ghost {
+    justify-content: unset;
+    padding: 0;
+  }
+
+  .ach-timeline {
+    gap: 2rem;
+  }
+}
