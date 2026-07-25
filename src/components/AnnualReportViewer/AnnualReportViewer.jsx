@@ -8,38 +8,64 @@ import './AnnualReportViewer.css'
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerSrc
 
-const SCALE_MIN = 0.6
-const SCALE_MAX = 2.0
-const SCALE_STEP = 0.2
+const SCALE_STEP          = 0.15
+const SCALE_MIN           = 0.25
+const SCALE_MAX           = 3.0
+const RESIZE_DEBOUNCE_MS  = 150
 
-// file       — imported PDF asset URL (pass via Vite import)
+// file         — imported PDF asset URL (pass via Vite import)
 // downloadName — filename used for the browser download prompt
 export default function AnnualReportViewer({ file, downloadName }) {
-  const [numPages, setNumPages]       = useState(null)
-  const [pageNumber, setPageNumber]   = useState(1)
-  const [scale, setScale]             = useState(1.0)
-  const [loading, setLoading]         = useState(true)
-  const [pageLoading, setPageLoading] = useState(false)
-  const [error, setError]             = useState(false)
-  const [containerWidth, setContainerWidth] = useState(700)
+  const [numPages, setNumPages]           = useState(null)
+  const [pageNumber, setPageNumber]       = useState(1)
+  const [scale, setScale]                 = useState(1.0)
+  const [nativePageWidth, setNativePageWidth] = useState(null)
+  const [loading, setLoading]             = useState(true)
+  const [pageLoading, setPageLoading]     = useState(false)
+  const [error, setError]                 = useState(false)
+  const [containerWidth, setContainerWidth] = useState(null)
 
   const containerRef = useRef(null)
+  const debounceRef  = useRef(null)
 
-  // Track container width for responsive page scaling
+  // Measure container width; debounce so resize doesn't fire every frame
   useEffect(() => {
     const el = containerRef.current
     if (!el) return
     const observer = new ResizeObserver(([entry]) => {
       const w = entry.contentRect.width
-      if (w > 0) setContainerWidth(w)
+      if (w <= 0) return
+      clearTimeout(debounceRef.current)
+      debounceRef.current = setTimeout(() => setContainerWidth(w), RESIZE_DEBOUNCE_MS)
     })
     observer.observe(el)
-    return () => observer.disconnect()
+    return () => {
+      observer.disconnect()
+      clearTimeout(debounceRef.current)
+    }
   }, [])
 
-  const onDocumentLoadSuccess = useCallback(({ numPages }) => {
-    setNumPages(numPages)
-    setLoading(false)
+  // Recompute fit-to-width scale whenever container width or native page width changes.
+  // This snaps back to fit after a window resize, giving a consistent baseline.
+  useEffect(() => {
+    if (!containerWidth || !nativePageWidth) return
+    const availableWidth = containerWidth - 48 // subtract canvas left+right padding
+    const computed = Math.min(
+      Math.max(availableWidth / nativePageWidth, SCALE_MIN),
+      SCALE_MAX
+    )
+    setScale(computed)
+  }, [containerWidth, nativePageWidth])
+
+  const onDocumentLoadSuccess = useCallback((pdf) => {
+    setNumPages(pdf.numPages)
+    // Fetch the first page to determine its native pixel dimensions at scale 1,
+    // so we can compute a true fit-to-width scale before showing the page.
+    pdf.getPage(1).then((page) => {
+      const viewport = page.getViewport({ scale: 1 })
+      setNativePageWidth(viewport.width)
+      setLoading(false) // show the page only after native width is known
+    })
   }, [])
 
   const onDocumentLoadError = useCallback(() => {
@@ -49,11 +75,14 @@ export default function AnnualReportViewer({ file, downloadName }) {
 
   const goToPrev = () => setPageNumber(p => Math.max(1, p - 1))
   const goToNext = () => setPageNumber(p => Math.min(numPages ?? 1, p + 1))
-  const zoomIn   = () => setScale(s => Math.min(SCALE_MAX, +(s + SCALE_STEP).toFixed(1)))
-  const zoomOut  = () => setScale(s => Math.max(SCALE_MIN, +(s - SCALE_STEP).toFixed(1)))
+  const zoomIn   = () => setScale(s => Math.min(SCALE_MAX, parseFloat((s + SCALE_STEP).toFixed(3))))
+  const zoomOut  = () => setScale(s => Math.max(SCALE_MIN, parseFloat((s - SCALE_STEP).toFixed(3))))
 
-  // Effective page width = container minus padding, capped at 900px
-  const pageWidth = Math.min(containerWidth - 48, 900) * scale
+  // Rendered page width in CSS pixels.
+  // If native width isn't known yet, fall back to filling the container.
+  const pageWidth = nativePageWidth
+    ? nativePageWidth * scale
+    : (containerWidth ? containerWidth - 48 : 700)
 
   return (
     <div className="arv">
@@ -115,7 +144,7 @@ export default function AnnualReportViewer({ file, downloadName }) {
             onLoadError={onDocumentLoadError}
             loading={null}
           >
-            {/* Loading skeleton while document or page renders */}
+            {/* Skeleton shown until document + native dimensions are known, or while a page renders */}
             {(loading || pageLoading) && (
               <div className="arv__skeleton" aria-hidden="true">
                 <div className="arv__skeleton-page" />
@@ -123,11 +152,11 @@ export default function AnnualReportViewer({ file, downloadName }) {
             )}
             {!loading && (
               <Page
-                key={`${pageNumber}-${scale}`}
+                key={pageNumber}
                 pageNumber={pageNumber}
                 width={pageWidth}
-                onRenderSuccess={() => setPageLoading(false)}
                 onLoadSuccess={() => setPageLoading(true)}
+                onRenderSuccess={() => setPageLoading(false)}
                 loading={null}
                 renderAnnotationLayer={false}
                 renderTextLayer={false}

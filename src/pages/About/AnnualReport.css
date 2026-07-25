@@ -30,6 +30,15 @@
   max-width: 500px;
 }
 
+/* Light-text overrides for dark building background */
+.bg-buildings .ar-header__heading {
+  color: var(--white);
+}
+
+.bg-buildings .ar-header__sub {
+  color: rgba(246, 244, 238, 0.72);
+}
+
 /* ── Per-viewer sections ─────────────────────────────────────── */
 .ar-viewer-section {
   padding-top: 0;

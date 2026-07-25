@@ -1,14 +1,17 @@
 import AnnualReportViewer from '../../components/AnnualReportViewer/AnnualReportViewer'
 import pdf2526 from '../../assets/documents/annual-report-25-26.pdf'
 import pdf2425 from '../../assets/documents/annual-report-24-25.pdf'
+import buildingPhoto from '../../assets/photos/buildings.png'
 import './AnnualReport.css'
 
 export default function AnnualReport() {
+  const bgStyle = { backgroundImage: `url(${buildingPhoto})` }
+
   return (
     <div className="ar-page">
 
-      {/* ── Page header ──────────────────────────────────────────── */}
-      <section className="ar-section ar-header">
+      {/* ── Page header — dark building bg ───────────────────────── */}
+      <section className="ar-section ar-header bg-buildings" style={bgStyle}>
         <div className="container">
           <span className="eyebrow">Annual Report</span>
           <h1 className="ar-header__heading">Our Year in Review</h1>
