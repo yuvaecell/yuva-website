@@ -1,0 +1,47 @@
+.ar-page {
+  background-color: var(--paper);
+}
+
+.ar-section {
+  padding: 5rem 0;
+}
+
+@media (max-width: 767px) {
+  .ar-section {
+    padding: 3rem 0;
+  }
+}
+
+/* ── Page header ─────────────────────────────────────────────── */
+.ar-header__heading {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+  max-width: 600px;
+}
+
+.ar-header__sub {
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.65;
+  max-width: 500px;
+}
+
+/* ── Per-viewer sections ─────────────────────────────────────── */
+.ar-viewer-section {
+  padding-top: 0;
+}
+
+.ar-viewer-section + .ar-viewer-section {
+  padding-top: 3.5rem;
+}
+
+/* Year sub-label above each viewer — reuses .eyebrow but slightly larger */
+.ar-year-label {
+  font-size: 14px;
+  margin-bottom: 1rem;
+  color: var(--y-blue);
+}

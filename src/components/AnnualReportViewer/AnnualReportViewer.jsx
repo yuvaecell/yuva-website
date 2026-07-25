@@ -4,8 +4,6 @@ import 'react-pdf/dist/Page/AnnotationLayer.css'
 import 'react-pdf/dist/Page/TextLayer.css'
 import workerSrc from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Download } from 'lucide-react'
-// PLACEHOLDER: swap annual-report.pdf with the real Annual Report file when ready
-import pdfFile from '../../assets/documents/annual-report.pdf'
 import './AnnualReportViewer.css'
 
 pdfjs.GlobalWorkerOptions.workerSrc = workerSrc
@@ -14,13 +12,15 @@ const SCALE_MIN = 0.6
 const SCALE_MAX = 2.0
 const SCALE_STEP = 0.2
 
-export default function AnnualReportViewer() {
-  const [numPages, setNumPages]     = useState(null)
-  const [pageNumber, setPageNumber] = useState(1)
-  const [scale, setScale]           = useState(1.0)
-  const [loading, setLoading]       = useState(true)
+// file       — imported PDF asset URL (pass via Vite import)
+// downloadName — filename used for the browser download prompt
+export default function AnnualReportViewer({ file, downloadName }) {
+  const [numPages, setNumPages]       = useState(null)
+  const [pageNumber, setPageNumber]   = useState(1)
+  const [scale, setScale]             = useState(1.0)
+  const [loading, setLoading]         = useState(true)
   const [pageLoading, setPageLoading] = useState(false)
-  const [error, setError]           = useState(false)
+  const [error, setError]             = useState(false)
   const [containerWidth, setContainerWidth] = useState(700)
 
   const containerRef = useRef(null)
@@ -110,12 +110,12 @@ export default function AnnualReportViewer() {
           </div>
         ) : (
           <Document
-            file={pdfFile}
+            file={file}
             onLoadSuccess={onDocumentLoadSuccess}
             onLoadError={onDocumentLoadError}
             loading={null}
           >
-            {/* Loading skeleton shown while document or page is loading */}
+            {/* Loading skeleton while document or page renders */}
             {(loading || pageLoading) && (
               <div className="arv__skeleton" aria-hidden="true">
                 <div className="arv__skeleton-page" />
@@ -140,10 +140,10 @@ export default function AnnualReportViewer() {
       {/* ── Download link ── */}
       <div className="arv__footer">
         <a
-          href={pdfFile}
-          download="YUVA-Annual-Report.pdf"
+          href={file}
+          download={downloadName}
           className="arv__download"
-          aria-label="Download Annual Report PDF"
+          aria-label={`Download ${downloadName}`}
         >
           <Download size={15} />
           Download PDF

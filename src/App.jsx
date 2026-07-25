@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './pages/Home/Home'
-import About from './pages/About/About'
+import AnnualReport from './pages/About/AnnualReport'
 import WhatWeDo from './pages/WhatWeDo/WhatWeDo'
 import Events from './pages/Events/Events'
 import Siif from './pages/Siif/Siif'
@@ -15,7 +15,7 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route path="/about" element={<AnnualReport />} />
           <Route path="/what-we-do" element={<WhatWeDo />} />
           <Route path="/events" element={<Events />} />
           <Route path="/siif" element={<Siif />} />
