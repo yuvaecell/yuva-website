@@ -1,7 +1,7 @@
 import AnnualReportViewer from '../../components/AnnualReportViewer/AnnualReportViewer'
 import pdf2526 from '../../assets/documents/annual-report-25-26.pdf'
 import pdf2425 from '../../assets/documents/annual-report-24-25.pdf'
-import buildingPhoto from '../../assets/photos/buildings.png'
+import buildingPhoto from '../../assets/photos/buildings.jpg'
 import './AnnualReport.css'
 
 export default function AnnualReport() {
@@ -16,7 +16,7 @@ export default function AnnualReport() {
           <span className="eyebrow">Annual Report</span>
           <h1 className="ar-header__heading">Our Year in Review</h1>
           <p className="ar-header__sub">
-            Read through what Yuva built, launched, and accomplished — year by year.
+            Read through what Yuva built, launched, and accomplished, year by year.
           </p>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { useRef, useEffect } from 'react'
-import buildingPhoto from '../../assets/photos/buildings.png'
+import buildingPhoto from '../../assets/photos/buildings.jpg'
 
 // Major achievement logos
 import logoKansai      from '../../assets/logos/case-comps/KANSAI.png'
@@ -23,6 +23,7 @@ import logoIitd  from '../../assets/logos/case-comps/IITD.png'
 import logoIitm  from '../../assets/logos/case-comps/IITM.png'
 import logoSrcc  from '../../assets/logos/case-comps/SRCC.png'
 
+import LogoCarousel from '../../components/LogoCarousel/LogoCarousel'
 import './Achievements.css'
 
 // ─── Fade-up hook (single element — matches site-wide pattern) ───
@@ -77,7 +78,7 @@ const achievements = [
   {
     logo: logoIsb,
     alt: 'ISB',
-    title: 'Marketing Mayhem ADVAITA — ISB',
+    title: 'Marketing Mayhem ADVAITA, ISB',
     badge: 'National Rank 1',
     desc: "Yuva members emerged as National Winners at Marketing Mayhem, the flagship marketing competition of ISB. One of India's largest case competitions, it brought together top MBA schools and premier institutions from across the country. Yuva members made history as the only undergraduate team to secure first place, demonstrating strategic thinking and marketing acumen.",
   },
@@ -114,7 +115,7 @@ const achievements = [
     alt: 'Cornell University',
     title: 'Cornell Corning EMI Case Competition',
     badge: 'Global Rank 4',
-    desc: 'Yuva members secured Global Rank 4 at the prestigious Cornell Corning EMI Case Competition, hosted by Cornell University. Bringing together participants from 79 universities across 21 countries — including Oxford, Cambridge, the National University of Singapore, and Harvard — the competition challenged teams to solve real-world challenges through strategic analysis and data-driven decision-making.',
+    desc: 'Yuva members secured Global Rank 4 at the prestigious Cornell Corning EMI Case Competition, hosted by Cornell University. Bringing together participants from 79 universities across 21 countries, including Oxford, Cambridge, the National University of Singapore, and Harvard. The competition challenged teams to solve real-world challenges through strategic analysis and data-driven decision-making.',
   },
   {
     logo: logoMelbourne,
@@ -126,7 +127,7 @@ const achievements = [
   {
     logo: logoBain,
     alt: 'Bain & Company',
-    title: 'BrainWars — Bain & Company',
+    title: 'BrainWars, Bain & Company',
     badge: 'National Rank 6',
     desc: "Yuva members secured National Rank 6 at BrainWars, Bain & Company's flagship strategy case competition. The competition brought together participants from India's leading institutions, including the IITs, IIMs, BITS Pilani, and top business schools, to solve complex challenges. Our performance showcased our analytical thinking, structured problem-solving, and consulting excellence.",
   },
@@ -170,7 +171,7 @@ export default function Achievements() {
             <span className="eyebrow">Achievements</span>
             <h1 className="ach-hero__heading">Wins that define us</h1>
             <p className="ach-hero__sub">
-              From national stages to global finals — the competitions where Yuva stood out.
+              From national stages to global finals: the competitions where Yuva stood out.
             </p>
           </div>
         </div>
@@ -237,13 +238,15 @@ export default function Achievements() {
               Other institutions and competitions where Yuva members have competed.
             </p>
           </div>
-          <div className="ach-more-grid">
-            {moreCompetitions.map(({ name, logo }, i) => (
-              <div key={name} className="ach-more-box fade-up" ref={setMoreRef(i)}>
+          <LogoCarousel
+            items={moreCompetitions}
+            perPage={4}
+            renderItem={({ name, logo }, i) => (
+              <div className="ach-more-box fade-up" ref={setMoreRef(i)}>
                 <img src={logo} alt={name} className="ach-more-logo" />
               </div>
-            ))}
-          </div>
+            )}
+          />
         </div>
       </section>
 

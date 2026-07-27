@@ -510,13 +510,6 @@
   margin-bottom: 1.25rem;
 }
 
-.alumni__logo-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-  gap: 0.75rem;
-  align-items: center;
-}
-
 .alumni__logo-box {
   border: 1px solid rgba(16, 24, 43, 0.1);
   border-radius: var(--radius-sm);
@@ -539,30 +532,6 @@
 /* ── 8. PARTNERS ─────────────────────────────────────────── */
 .partners {
   background-color: var(--paper);
-}
-
-.partners__grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-}
-
-@media (max-width: 1023px) {
-  .partners__grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-@media (max-width: 767px) {
-  .partners__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 479px) {
-  .partners__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .partners__logo-box {

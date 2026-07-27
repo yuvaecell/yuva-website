@@ -1,0 +1,80 @@
+/* ── LogoCarousel ─────────────────────────────────────────────── */
+
+.logo-carousel {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+/* ── Track ────────────────────────────────────────────────────── */
+.logo-carousel__track {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.logo-carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Snap items — width computed from --lc-per CSS variable ────── */
+.logo-carousel__snap-item {
+  flex: 0 0 calc(
+    (100% - (var(--lc-per, 5) - 1) * 1rem) / var(--lc-per, 5)
+  );
+  scroll-snap-align: start;
+}
+
+/* Logo boxes inside snap items fill the available width */
+.logo-carousel__snap-item > * {
+  width: 100%;
+}
+
+/* ── Arrow buttons ────────────────────────────────────────────── */
+.logo-carousel__arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--y-blue);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.2s ease;
+}
+
+.logo-carousel__arrow:hover:not(:disabled) {
+  background-color: var(--y-blue-dark);
+}
+
+.logo-carousel__arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Mobile: hide arrows, enable native touch swipe ────────────── */
+@media (max-width: 767px) {
+  .logo-carousel {
+    gap: 0;
+  }
+
+  .logo-carousel__arrow {
+    display: none;
+  }
+
+  .logo-carousel__track {
+    gap: 0.75rem;
+  }
+
+  /* 2 per row on mobile, ignoring --lc-per */
+  .logo-carousel__snap-item {
+    flex: 0 0 calc((100% - 0.75rem) / 2);
+  }
+}

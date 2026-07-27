@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import buildingPhoto from '../../assets/photos/buildings.png'
+import buildingPhoto from '../../assets/photos/buildings.jpg'
 import teamPhoto from '../../assets/photos/teamphoto.png'
 import aboutPhoto from '../../assets/photos/about-us-cropped.jpg'
 import yAccelLogo from '../../assets/logos/y-accel-logo-new.png'
@@ -50,6 +50,7 @@ import Marquee from '../../components/Marquee/Marquee'
 import StatBlock from '../../components/StatBlock/StatBlock'
 import EventCard from '../../components/EventCard/EventCard'
 import AlumniCard from '../../components/AlumniCard/AlumniCard'
+import LogoCarousel from '../../components/LogoCarousel/LogoCarousel'
 import './Home.css'
 
 // IntersectionObserver hook for fade-up reveals
@@ -105,7 +106,7 @@ const events = [
     tag: "Annual Event",
     title: "E-Summit '26",
     description:
-      "Our annual celebration of innovation — featuring Udyami 5.0, a Shark Tank-style pitch competition, and global speaker panels.",
+      "Our annual celebration of innovation, featuring Udyami 5.0, a Shark Tank-style pitch competition, and global speaker panels.",
     logo: esummitLogo,
     logoAlt: "E-Summit logo",
     to: "/events#e-summit",
@@ -172,13 +173,13 @@ export default function Home() {
       <section className="hero bg-buildings" style={bgStyle}>
         <div className="container hero__inner">
           <div className="hero__content">
-            <span className="eyebrow">Entrepreneurship Cell, SSCBS — Est. 2009</span>
+            <span className="eyebrow">Entrepreneurship Cell, SSCBS, Est. 2009</span>
             <h1 className="hero__headline">
               We build the people<br />
               who build the next companies.
             </h1>
             <p className="hero__sub">
-              Yuva turns SSCBS students into founders — through live industry
+              Yuva turns SSCBS students into founders through live industry
               projects, flagship events, and direct access to SIIF's incubation
               ecosystem.
             </p>
@@ -258,7 +259,7 @@ export default function Home() {
                   <img src={yAccelLogo} alt="Y-Accel logo" className="about__box-logo" />
                   <h4 className="about__box-title">Y-ACCEL</h4>
                   <p className="about__box-text">
-                    Yuva's startup accelerator and consulting wing — market
+                    Yuva's startup accelerator and consulting wing, offering market
                     research, GTM strategy, marketing support, and access to
                     mentors and investors.
                   </p>
@@ -268,7 +269,7 @@ export default function Home() {
                   <h4 className="about__box-title">Connected to SIIF</h4>
                   <p className="about__box-text">
                     SSCBS Innovation and Incubation Foundation empowers startups
-                    through funding, mentorship, and incubation — having backed
+                    through funding, mentorship, and incubation, having backed
                     80+ ventures with over ₹2.65 crore disbursed.
                   </p>
                 </div>
@@ -333,16 +334,18 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Alumni startup logo strip */}
+          {/* Alumni startup logo carousel */}
           <div className="alumni__startups">
             <p className="alumni__startups-label eyebrow">Startups built by our alumni</p>
-            <div className="alumni__logo-strip">
-              {alumniStartups.map(({ name, src }) => (
-                <div key={name} className="alumni__logo-box">
+            <LogoCarousel
+              items={alumniStartups}
+              perPage={4}
+              renderItem={({ name, src }) => (
+                <div className="alumni__logo-box">
                   <img src={src} alt={name} className="alumni__brand-logo" />
                 </div>
-              ))}
-            </div>
+              )}
+            />
           </div>
         </div>
       </section>
@@ -354,13 +357,15 @@ export default function Home() {
             <span className="eyebrow">Our Partners</span>
             <h2 className="section__heading">Who we've worked with</h2>
           </div>
-          <div className="partners__grid">
-            {partners.map(({ name, src }) => (
-              <div key={name} className="partners__logo-box">
+          <LogoCarousel
+            items={partners}
+            perPage={5}
+            renderItem={({ name, src }) => (
+              <div className="partners__logo-box">
                 <img src={src} alt={name} className="partners__logo-img" />
               </div>
-            ))}
-          </div>
+            )}
+          />
         </div>
       </section>
     </div>

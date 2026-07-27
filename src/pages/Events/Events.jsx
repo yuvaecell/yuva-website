@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
-import buildingPhoto from '../../assets/photos/buildings.png'
+import buildingPhoto from '../../assets/photos/buildings.jpg'
 import esummitLogo from '../../assets/logos/events/ESUMMIT.png'
 import forgeLogo from '../../assets/logos/events/FOUNDERSFORGE.png'
 import photoSpeakerSession from '../../assets/photos/events/SPEAKERSESSION.png'
@@ -85,7 +85,7 @@ const forgeCards = [
   {
     photo: photoEmpathyGauntlet,
     title: 'Empathy Gauntlet',
-    desc: "A design-thinking exercise focused on user behavior and pain points — participants mapped a persona's 'day in the life,' then adapted their solutions when an external disruption was introduced midway through.",
+    desc: "A design-thinking exercise focused on user behavior and pain points. Participants mapped a persona's 'day in the life,' then adapted their solutions when an external disruption was introduced midway through.",
   },
   {
     photo: photoAdMad,
@@ -95,12 +95,12 @@ const forgeCards = [
   {
     photo: photoABTesting,
     title: 'A/B Testing',
-    desc: 'An introduction to data-driven decision-making — teams tested variations of an idea and evaluated outcomes based on peer feedback.',
+    desc: 'An introduction to data-driven decision-making: teams tested variations of an idea and evaluated outcomes based on peer feedback.',
   },
   {
     photo: photoReverseSharkTank,
     title: 'Reverse Shark Tank',
-    desc: 'Participants shifted from founders to investors, evaluating startup ideas before engaging in competitive bidding — sharpening their understanding of investor perspectives and financial evaluation.',
+    desc: 'Participants shifted from founders to investors, evaluating startup ideas before engaging in competitive bidding, sharpening their understanding of investor perspectives and financial evaluation.',
   },
 ]
 
@@ -108,7 +108,7 @@ const otherCards = [
   {
     photo: photoAIMS,
     title: 'AIM Launch',
-    desc: 'Yuva co-anchored the launch of the Mentor India Academy under the Atal Innovation Mission, NITI Aayog — inaugurated by Mr. Deepak Bagla, Former MD & CEO of Invest India — bridging grassroots school innovators with ecosystem mentors.',
+    desc: 'Yuva co-anchored the launch of the Mentor India Academy under the Atal Innovation Mission, NITI Aayog, inaugurated by Mr. Deepak Bagla, Former MD & CEO of Invest India, bridging grassroots school innovators with ecosystem mentors.',
   },
   {
     photo: photoICICC,
@@ -129,13 +129,13 @@ const otherCards = [
     photo: photoSpringboard,
     logo: logoSpringboard,
     title: 'Springboard',
-    desc: 'Springboard was a first-of-its-kind global collaboration — a joint initiative between Yuva, SSCBS, and the E-Cell of the National University of Singapore. This global startup ideation challenge was open to all college students, giving them a chance to solve real-life industry challenges. With judges ranging from CEOs to startup founders, the event drew 500+ participants from across the globe.',
+    desc: 'Springboard was a first-of-its-kind global collaboration, a joint initiative between Yuva, SSCBS, and the E-Cell of the National University of Singapore. This global startup ideation challenge was open to all college students, giving them a chance to solve real-life industry challenges. With judges ranging from CEOs to startup founders, the event drew 500+ participants from across the globe.',
   },
   {
     photo: photoImpactWeek,
     logo: logoImpactWeek,
     title: 'Impact Week',
-    desc: 'A design thinking workshop organised by Lufthansa in collaboration with SIIF, Yuva, DPSRU, and Ambedkar University — bringing together students to promote innovation and turn ideas into reality.',
+    desc: 'A design thinking workshop organised by Lufthansa in collaboration with SIIF, Yuva, DPSRU, and Ambedkar University, bringing together students to promote innovation and turn ideas into reality.',
   },
   {
     photo: photoInvestorsDay,
@@ -146,13 +146,13 @@ const otherCards = [
     photo: photoMilen,
     logo: logoMilen,
     title: 'MilEn',
-    desc: "Held on National Entrepreneurship Day, Mil-En brought together the brightest minds from E-Cells across Delhi — including E-Cell LSR, E-Cell SRCC, and E-Cell IIITD — to network and connect. The day opened with a speaker session by Mr. Himanshu Wardhan, founder of Thevasa and a CBS alum, featured activities like 'Stack-It Startup,' and closed with a musical performance by Dhwani, SSCBS's music society.",
+    desc: "Held on National Entrepreneurship Day, Mil-En brought together the brightest minds from E-Cells across Delhi, including E-Cell LSR, E-Cell SRCC, and E-Cell IIITD, to network and connect. The day opened with a speaker session by Mr. Himanshu Wardhan, founder of Thevasa and a CBS alum, featured activities like 'Stack-It Startup,' and closed with a musical performance by Dhwani, SSCBS's music society.",
   },
   {
     photo: photoStartupFood,
     title: 'Startup Food Fest',
     // TODO Aarav: replace with real Startup Food Fest copy — placeholder text below.
-    desc: 'A Yuva and SIIF initiative bringing together student-run food startups and ventures in a festival format — details to be added.',
+    desc: 'A Yuva and SIIF initiative bringing together student-run food startups and ventures in a festival format. Details to be added.',
   },
 ]
 
@@ -193,7 +193,6 @@ export default function Events() {
   const esummitRef   = useFadeUp()
   const forgeRef     = useFadeUp()
   const otherRef     = useFadeUp()
-  const ctaRef       = useFadeUp()
 
   const esummitCardRefs = useCardReveal(esummitCards.length)
   const forgeCardRefs   = useCardReveal(forgeCards.length)
@@ -210,7 +209,7 @@ export default function Events() {
             <h1 className="ev-header__heading">What we've been building</h1>
             <p className="ev-header__sub">
               A year of flagship summits, hands-on bootcamps, and national and
-              international stages — here's every event from 2025-26.
+              international stages: here's every event from 2025-26.
             </p>
           </div>
         </div>
@@ -226,7 +225,7 @@ export default function Events() {
             <span className="eyebrow">Annual Event · E-Summit &apos;26</span>
             <h2 className="ev-section__heading">Our annual celebration of innovation</h2>
             <p className="ev-section__intro">
-              Our annual celebration of innovation and entrepreneurship — featuring
+              Our annual celebration of innovation and entrepreneurship, featuring
               the Business Plan Competition, Udyami 5.0, and a panel discussion
               with global experts.
             </p>
@@ -289,20 +288,6 @@ export default function Events() {
                 cardRef={el => { otherCardRefs.current[i] = el }}
               />
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 5. CLOSING CTA ─────────────────────────────────────── */}
-      <section className="ev-cta">
-        <div className="container">
-          <div className="ev-cta__inner fade-up" ref={ctaRef}>
-            <h2 className="ev-cta__heading">Want to be part of the next one?</h2>
-            <p className="ev-cta__sub">
-              Follow us for early access to registrations, speaker announcements,
-              and opportunities to collaborate.
-            </p>
-            <a href="#site-footer" className="ev-btn ev-btn--primary">Get in touch</a>
           </div>
         </div>
       </section>

@@ -111,13 +111,21 @@ button:focus-visible {
 
 /* ── Building-photo background (reusable) ─────────────────────────
    Apply class + style={{ backgroundImage: `url(${photo})` }} inline.
-   background-attachment: fixed degrades silently on iOS Safari — ok.
+   Fixed attachment gives a parallax effect on desktop; mobile switches
+   to scroll because iOS Safari silently ignores background-attachment:fixed
+   on elements inside scroll containers, rendering as plain blue.
    ────────────────────────────────────────────────────────────────── */
 .bg-buildings {
   position: relative;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+@media (max-width: 767px) {
+  .bg-buildings {
+    background-attachment: scroll;
+  }
 }
 
 .bg-buildings::before {

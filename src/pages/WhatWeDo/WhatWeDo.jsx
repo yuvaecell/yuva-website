@@ -6,7 +6,7 @@ import {
   Search, FlaskConical, BarChart3, Users, Coins,
   Briefcase, LineChart, Sparkles, ShieldCheck, Lightbulb,
 } from 'lucide-react'
-import buildingPhoto from '../../assets/photos/buildings.png'
+import buildingPhoto from '../../assets/photos/buildings.jpg'
 import photoThinkspace from '../../assets/photos/thinkspace.png'
 import photoYuvaRoom from '../../assets/photos/yuvaroom.png'
 import yuvaIcon from '../../assets/logos/yuva-icon-only.png'
@@ -29,6 +29,7 @@ import pastZomato from '../../assets/logos/partners/ZOMATO.png'
 import pastPaytm from '../../assets/logos/partners/PAYTM.png'
 import pastCnbc from '../../assets/logos/partners/CNBC.png'
 import pastNus from '../../assets/logos/partners/NUS.png'
+import LogoCarousel from '../../components/LogoCarousel/LogoCarousel'
 import './WhatWeDo.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -92,7 +93,7 @@ const currentProjects = [
     logo: logoAmex,
     alt: 'American Express',
     title: 'Driving Long-Term Growth Strategy for American Express',
-    desc: 'Yuva partnered with Amex GBT to counter price-driven competition and shrinking supply-side revenue. The team benchmarked pricing across 6+ platforms, evaluated 3 revenue models, and assessed AI-automation potential — shaping 10+ recommendations projected to improve enterprise retention by 14%.',
+    desc: 'Yuva partnered with Amex GBT to counter price-driven competition and shrinking supply-side revenue. The team benchmarked pricing across 6+ platforms, evaluated 3 revenue models, and assessed AI-automation potential, shaping 10+ recommendations projected to improve enterprise retention by 14%.',
     link: 'https://drive.google.com/file/d/1Il_dBUrvVTWyGWZIb7fN0oyI9i-RHe7M/view',
     linkLabel: 'View sample deliverable →',
   },
@@ -112,7 +113,7 @@ const currentProjects = [
     logo: logoSuprajit,
     alt: 'Suprajit Engineering',
     title: 'Driving Market Expansion for Suprajit Engineering',
-    desc: "The team analyzed India's automotive cable market amid rising EV demand — benchmarking 200+ cities and 8+ competing suppliers, resulting in 10 strategic recommendations and identifying a ₹400 Cr Serviceable Obtainable Market.",
+    desc: "The team analyzed India's automotive cable market amid rising EV demand, benchmarking 200+ cities and 8+ competing suppliers, resulting in 10 strategic recommendations and identifying a ₹400 Cr Serviceable Obtainable Market.",
   },
 ]
 
@@ -198,7 +199,6 @@ export default function WhatWeDo() {
   const compHeaderRef  = useFadeUp()
   const thinkspaceRef  = useFadeUp()
   const pastHeaderRef  = useFadeUp()
-  const ctaRef         = useFadeUp()
 
   // Scroll to anchored section when navigating with a hash
   useEffect(() => {
@@ -223,8 +223,9 @@ export default function WhatWeDo() {
   // ── Pinned scroll setup ─────────────────────────────────────────
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isMobile = window.innerWidth <= 768
 
-    if (!ENABLE_SCROLL_PIN || prefersReduced) {
+    if (!ENABLE_SCROLL_PIN || prefersReduced || isMobile) {
       // Fallback: simple IntersectionObserver fade-up on each card
       const observers = []
       fallbackRefs.current.forEach(el => {
@@ -316,10 +317,12 @@ export default function WhatWeDo() {
   }, [])
 
   // Computed once on mount — stable across re-renders
+  // Disable pinned scroll on mobile (iOS Safari doesn't handle it well)
   const isPinned = useMemo(() => (
     typeof window !== 'undefined' &&
     ENABLE_SCROLL_PIN &&
-    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+    window.innerWidth > 768
   ), [])
 
   return (
@@ -331,7 +334,7 @@ export default function WhatWeDo() {
           <span className="eyebrow">What We Do</span>
           <h1 className="wwd-header__heading">How we build founders</h1>
           <p className="wwd-header__sub">
-            From flagship events to real consulting work — here's the full picture.
+            From flagship events to real consulting work: here's the full picture.
           </p>
         </div>
       </section>
@@ -513,50 +516,39 @@ export default function WhatWeDo() {
         <div className="container">
           <div className="fade-up" ref={thinkspaceRef}>
             <span className="eyebrow">Our Space</span>
-            <h2 className="wwd-section__heading">ThinkSpace — Room 168</h2>
+            <h2 className="wwd-section__heading">ThinkSpace: Room 168</h2>
             <p className="wwd-thinkspace__sub">
-              Room 168 — where Yuvaites gather, brainstorm, and build. A safe,
+              Room 168, where Yuvaites gather, brainstorm, and build. A safe,
               fun space for every entrepreneurial mind on campus.
             </p>
           </div>
           <div className="wwd-thinkspace__photos">
-            <img src={photoThinkspace} alt="ThinkSpace — Room 168" className="wwd-thinkspace__img" />
+            <img src={photoThinkspace} alt="ThinkSpace, Room 168" className="wwd-thinkspace__img" />
             <img src={photoYuvaRoom} alt="Yuva Room" className="wwd-thinkspace__img" />
           </div>
         </div>
       </section>
 
-      {/* ── 6. PAST PROJECTS LOGO GRID — plain bg ────────────── */}
+      {/* ── 6. PAST PROJECTS LOGO CAROUSEL — plain bg ───────── */}
       <section className="wwd-section wwd-past">
         <div className="container">
           <div className="fade-up" ref={pastHeaderRef}>
             <span className="eyebrow">Past Projects &amp; Engagements</span>
             <h2 className="wwd-section__heading">A longer track record</h2>
           </div>
-          <div className="past-grid">
-            {pastBrands.map(({ name, logo }) => (
-              <div key={name} className="past-logo-box">
+          <LogoCarousel
+            items={pastBrands}
+            perPage={4}
+            renderItem={({ name, logo }) => (
+              <div className="past-logo-box">
                 {logo ? (
                   <img src={logo} alt={name} className="past-logo-img" />
                 ) : (
                   <span className="past-logo-placeholder">{name}</span>
                 )}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. CLOSING CTA ───────────────────────────────────── */}
-      <section className="wwd-cta">
-        <div className="container">
-          <div className="wwd-cta__inner fade-up" ref={ctaRef}>
-            <h2 className="wwd-cta__heading">Want to work with us?</h2>
-            <p className="wwd-cta__sub">
-              Let's build something together — whether you're a brand, a startup, or an investor.
-            </p>
-            <a href="#site-footer" className="wwd-btn wwd-btn--primary">Get in touch</a>
-          </div>
+            )}
+          />
         </div>
       </section>
 

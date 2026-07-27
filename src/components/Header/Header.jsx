@@ -155,7 +155,7 @@ export default function Header() {
           <a
             href="https://in.linkedin.com/company/yuva-entrepreneurship-cell-cbs"
             className="header__drawer-social-link"
-            aria-label="LinkedIn — Yuva E Cell"
+            aria-label="LinkedIn, Yuva E Cell"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -168,7 +168,7 @@ export default function Header() {
           <a
             href="https://www.instagram.com/yuva.sscbs/"
             className="header__drawer-social-link"
-            aria-label="Instagram — @yuva.sscbs"
+            aria-label="Instagram, @yuva.sscbs"
             target="_blank"
             rel="noopener noreferrer"
           >

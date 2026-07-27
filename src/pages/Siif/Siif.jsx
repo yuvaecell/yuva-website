@@ -3,7 +3,7 @@ import {
   Rocket, HeartHandshake, Landmark, UserCheck, Handshake, Briefcase,
   Lightbulb, Network, Users, CalendarDays, Coins,
 } from 'lucide-react'
-import buildingPhoto from '../../assets/photos/buildings.png'
+import buildingPhoto from '../../assets/photos/buildings.jpg'
 import siifLogo from '../../assets/logos/siif-logo.png'
 import siifPhoto from '../../assets/photos/siif.png'
 import './Siif.css'
@@ -60,7 +60,7 @@ const offerings = [
   {
     Icon: Coins,
     title: 'Seed Funding Assistance',
-    desc: 'We connect founders with angel investors, venture capitalists, and government-backed funding schemes — making the journey from idea to reality feel within reach.',
+    desc: 'We connect founders with angel investors, venture capitalists, and government-backed funding schemes, making the journey from idea to reality feel within reach.',
   },
 ]
 
@@ -116,7 +116,7 @@ export default function Siif() {
               </p>
             </div>
             <div className="siif-hero__photo-col">
-              <img src={siifPhoto} alt="SIIF — SSCBS Innovation & Incubation Foundation" className="siif-hero__photo" />
+              <img src={siifPhoto} alt="SIIF, SSCBS Innovation and Incubation Foundation" className="siif-hero__photo" />
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@ export default function Siif() {
               incubation programs and leverage mentorship, funding, and a strong
               entrepreneurial ecosystem to turn your vision into reality.
             </p>
-            <a href="#site-footer" className="siif-btn siif-btn--primary">Get in touch</a>
+            <a href="https://www.siif.in" target="_blank" rel="noopener noreferrer" className="siif-btn siif-btn--primary">Get in touch</a>
           </div>
         </div>
       </section>

@@ -237,6 +237,12 @@
   position: relative;
 }
 
+@media (max-width: 767px) {
+  .ach-more {
+    background-attachment: scroll;
+  }
+}
+
 .ach-more::before {
   content: '';
   position: absolute;
@@ -257,24 +263,6 @@
 
 .ach-more .ach-section__sub {
   color: rgba(246, 244, 238, 0.72);
-}
-
-.ach-more-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-
-@media (max-width: 767px) {
-  .ach-more-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 479px) {
-  .ach-more-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .ach-more-box {

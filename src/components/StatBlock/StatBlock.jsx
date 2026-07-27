@@ -1,5 +1,5 @@
 import { User, Share2, Briefcase, Rocket } from 'lucide-react'
-import buildingPhoto from '../../assets/photos/buildings.png'
+import buildingPhoto from '../../assets/photos/buildings.jpg'
 import './StatBlock.css'
 
 const stats = [
