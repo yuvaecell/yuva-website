@@ -15,6 +15,9 @@
     background-position: center;
     z-index: 0;
     will-change: transform;
+    /* Start with an identity translate3d so the element is immediately
+       promoted to its own compositing layer before the first scroll event */
+    transform: translate3d(0, 0, 0);
     pointer-events: none;
   }
 }

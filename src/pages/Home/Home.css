@@ -467,7 +467,7 @@ a.about__box:hover {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 2.5rem;
   margin-top: 3rem;
 }
 
@@ -554,12 +554,12 @@ a.about__box:hover {
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
-  margin-bottom: 0.875rem;
+  margin-bottom: 1rem;
 }
 
 .alum-photo {
-  width: 72px;
-  height: 72px;
+  width: 92px;
+  height: 92px;
   border-radius: 50%;
   object-fit: cover;
   object-position: center top;
@@ -570,17 +570,17 @@ a.about__box:hover {
 
 .alum-name {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .alum-title {
-  font-size: 0.825rem;
+  font-size: 0.95rem;
   color: rgba(246, 244, 238, 0.65);
   line-height: 1.5;
-  max-width: 260px;
+  max-width: 300px;
 }
 
 /* Keep title max-width appropriate for each side */
@@ -589,9 +589,9 @@ a.about__box:hover {
 }
 
 .alum-brand-logo {
-  height: 52px;
+  height: 80px;
   width: auto;
-  max-width: 160px;
+  max-width: 220px;
   object-fit: contain;
   display: block;
   filter: brightness(0) invert(1);
@@ -655,12 +655,12 @@ a.about__box:hover {
   }
 
   .alum-photo {
-    width: 56px;
-    height: 56px;
+    width: 70px;
+    height: 70px;
   }
 
   .alum-timeline {
-    gap: 2.5rem;
+    gap: 2rem;
   }
 }
 
