@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom'
 import buildingPhoto from '../../assets/photos/buildings.jpg'
 import teamPhoto from '../../assets/photos/teamphoto.png'
 import aboutPhoto from '../../assets/photos/about-us-cropped.jpg'
+import photoYuvaRoom from '../../assets/photos/yuvaroom.png'
 import yAccelLogo from '../../assets/logos/y-accel-logo-new.png'
 import siifLogo from '../../assets/logos/siif-logo-new.png'
-import esummitLogo from '../../assets/logos/events/ESUMMIT.png'
-import foundersLogo from '../../assets/logos/events/FOUNDERSFORGE.png'
 import alumniAditya from '../../assets/photos/alumni/aditya-arora.jpg'
 import alumniApeksha from '../../assets/photos/alumni/apeksha-gupta.jpg'
 import alumniBala from '../../assets/photos/alumni/bala-sarda.jpg'
@@ -15,14 +14,12 @@ import alumniPranav from '../../assets/photos/alumni/pranav-bajaj.jpg'
 import alumniSrishti from '../../assets/photos/alumni/shrishti-jain-kwatra.jpeg'
 import alumniShivansh from '../../assets/photos/alumni/shivansh-jindal.jpeg'
 import alumniAnmol from '../../assets/photos/alumni/anmol-ahlawat.jpeg'
-import brandAdda247 from '../../assets/logos/alumni-brands/adda247.png'
-import brandFeedingIndia from '../../assets/logos/alumni-brands/feedingindia.png'
-import brandJohnJacobs from '../../assets/logos/alumni-brands/johnjacobs.png'
-import brandKhaad from '../../assets/logos/alumni-brands/khaad.png'
-import brandMedulance from '../../assets/logos/alumni-brands/medulance.png'
-import brandMoxie from '../../assets/logos/alumni-brands/moxiebeauty.jpeg'
-import brandVahdam from '../../assets/logos/alumni-brands/vahdam.png'
-import brandMerchantRecords from '../../assets/logos/alumni-brands/merchantrecords.png'
+import brandFaad from '../../assets/logos/alumni-brands/FAAD.png'
+import brandFeedingIndia from '../../assets/logos/alumni-brands/FEEDINGINDIA.png'
+import brandJohnJacobs from '../../assets/logos/alumni-brands/JOHNJACOBS.png'
+import brandMoxie from '../../assets/logos/alumni-brands/MOXIEBEAUTY.png'
+import brandMerchantRecords from '../../assets/logos/alumni-brands/MERCHANTRECORDS.png'
+import brandVahdam from '../../assets/logos/alumni-brands/VAHDAM.png'
 import iconProjects from '../../assets/logos/what-we-do/projects.png'
 import iconEvent from '../../assets/logos/what-we-do/event.png'
 import iconStartups from '../../assets/logos/what-we-do/startups.png'
@@ -47,8 +44,6 @@ import partnerPeesafe from '../../assets/logos/partners/PEESAFE.png'
 import partnerZomato from '../../assets/logos/partners/ZOMATO.png'
 import Marquee from '../../components/Marquee/Marquee'
 import StatBlock from '../../components/StatBlock/StatBlock'
-import EventCard from '../../components/EventCard/EventCard'
-import AlumniCard from '../../components/AlumniCard/AlumniCard'
 import LogoCarousel from '../../components/LogoCarousel/LogoCarousel'
 import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import './Home.css'
@@ -79,53 +74,84 @@ function useFadeUp() {
   return ref
 }
 
-const alumni = [
-  { name: 'Aditya Arora', title: 'CEO, FAAD Capital & Angel Investor', photo: alumniAditya },
-  { name: 'Apeksha Gupta', title: 'CEO & Co-Founder, John Jacobs', photo: alumniApeksha },
-  { name: 'Bala Sarda', title: 'Founder & CEO, Vahdam Teas', photo: alumniBala },
-  { name: 'Nikita Khanna', title: 'Co-Founder, Moxie Beauty', photo: alumniNikita },
-  { name: 'Pranav Bajaj', title: 'Co-Founder, Medulance (Forbes 30U30)', photo: alumniPranav },
-  { name: 'Srishti Jain Kawatra', title: 'Co-Founder, Zomato Feeding India', photo: alumniSrishti },
-  { name: 'Shivansh Jindal', title: 'Founder, Merchant Records', photo: alumniShivansh },
-  { name: 'Anmol Ahlawat', title: 'Co-Founder, Moxie Beauty', photo: alumniAnmol },
-]
+// Observe each .alum-row within the container as it scrolls into view
+function useAlumniReveal() {
+  const containerRef = useRef(null)
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const rows = container.querySelectorAll('.alum-row')
+    if (prefersReduced) {
+      rows.forEach(r => r.classList.add('visible'))
+      return
+    }
+    const observers = []
+    rows.forEach(row => {
+      const obs = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) { row.classList.add('visible'); obs.disconnect() }
+        },
+        { threshold: 0.1 }
+      )
+      obs.observe(row)
+      observers.push(obs)
+    })
+    return () => observers.forEach(o => o.disconnect())
+  }, [])
+  return containerRef
+}
 
-const alumniStartups = [
-  { name: 'Feeding India',      src: brandFeedingIndia },
-  { name: 'Vahdam',             src: brandVahdam },
-  { name: 'Adda247',            src: brandAdda247 },
-  { name: 'Medulance',          src: brandMedulance },
-  { name: 'Moxie Beauty',       src: brandMoxie },
-  { name: 'Khaad',              src: brandKhaad },
-  { name: 'John Jacobs',        src: brandJohnJacobs },
-  { name: 'Merchant Records',   src: brandMerchantRecords },
-]
-
-const events = [
+// Alumni timeline data — Bala Sarda leads, Moxie founders share one entry
+const alumniTimeline = [
   {
-    tag: "Annual Event",
-    title: "E-Summit '26",
-    description:
-      "Our annual celebration of innovation, featuring Udyami 5.0, a Shark Tank-style pitch competition, and global speaker panels.",
-    logo: esummitLogo,
-    logoAlt: "E-Summit logo",
-    to: "/events#e-summit",
+    names: 'Bala Sarda',
+    title: 'Founder & CEO, Vahdam Teas',
+    photos: [alumniBala],
+    brandLogo: brandVahdam,
+    brandName: 'Vahdam',
   },
   {
-    tag: "Bootcamp",
-    title: "Founder's Forge 2.0",
-    description:
-      "A hands-on bootcamp in design thinking, pitching, and startup fundamentals, run in association with SIIF.",
-    logo: foundersLogo,
-    logoAlt: "Founder's Forge logo",
-    to: "/events#founders-forge",
+    names: 'Aditya Arora',
+    title: 'CEO, FAAD Capital & Angel Investor',
+    photos: [alumniAditya],
+    brandLogo: brandFaad,
+    brandName: 'FAAD Capital',
   },
   {
-    tag: "International",
-    title: "Global Perspectives on Entrepreneurship",
-    description:
-      "An international panel bringing together founders and experts from Japan, Australia, Vietnam, and India.",
-    to: "/events#e-summit",
+    names: 'Apeksha Gupta',
+    title: 'CEO & Co-Founder, John Jacobs',
+    photos: [alumniApeksha],
+    brandLogo: brandJohnJacobs,
+    brandName: 'John Jacobs',
+  },
+  {
+    names: 'Nikita Khanna & Anmol Ahlawat',
+    title: 'Co-Founders, Moxie Beauty',
+    photos: [alumniNikita, alumniAnmol],
+    brandLogo: brandMoxie,
+    brandName: 'Moxie Beauty',
+  },
+  {
+    names: 'Pranav Bajaj',
+    title: 'Co-Founder, Medulance (Forbes 30U30)',
+    photos: [alumniPranav],
+    brandLogo: null,
+    brandName: null,
+  },
+  {
+    names: 'Srishti Jain Kawatra',
+    title: 'Co-Founder, Zomato Feeding India',
+    photos: [alumniSrishti],
+    brandLogo: brandFeedingIndia,
+    brandName: 'Feeding India',
+  },
+  {
+    names: 'Shivansh Jindal',
+    title: 'Founder, Merchant Records',
+    photos: [alumniShivansh],
+    brandLogo: brandMerchantRecords,
+    brandName: 'Merchant Records',
   },
 ]
 
@@ -162,9 +188,10 @@ export default function Home() {
 
   const aboutRef = useFadeUp()
   const whatWeDoRef = useFadeUp()
-  const eventsRef = useFadeUp()
-  const alumniRef = useFadeUp()
+  const room168Ref = useFadeUp()
+  const alumniHeaderRef = useFadeUp()
   const partnersRef = useFadeUp()
+  const alumniTimelineRef = useAlumniReveal()
 
   return (
     <div className="home">
@@ -290,20 +317,30 @@ export default function Home() {
       {/* ─── 5. STATS BAND ───────────────────────────────────── */}
       <StatBlock />
 
-      {/* ─── 6. EVENTS PREVIEW ───────────────────────────────── */}
-      <section className="section events-preview" id="events">
+      {/* ─── 6. ROOM 168 ─────────────────────────────────────── */}
+      <section className="section room-168">
         <div className="container">
-          <div className="fade-up" ref={eventsRef}>
-            <span className="eyebrow">What's Happening</span>
-            <h2 className="section__heading">Our flagship events</h2>
-          </div>
-          <div className="events-preview__grid">
-            {events.map((e) => (
-              <EventCard key={e.title} {...e} />
-            ))}
-          </div>
-          <div className="events-preview__footer">
-            <Link to="/events" className="text-link">View all events →</Link>
+          <div className="room168__inner fade-up" ref={room168Ref}>
+            <div className="room168__photo-col">
+              <img
+                src={photoYuvaRoom}
+                alt="Room 168 at SSCBS"
+                className="room168__photo"
+              />
+            </div>
+            <div className="room168__text-col">
+              <span className="eyebrow">Our Space</span>
+              <h2 className="section__heading">Room 168</h2>
+              <p className="room168__body">
+                Room 168 is where ideas get loud before they get real: bean bags
+                in one corner, a whiteboard covered in half-formed pitches in
+                another. It's less an office and more a hangout that happens to
+                run on caffeine and stubbornness. Pitch decks get roasted here,
+                plans get rebuilt on the spot, and somewhere between the chaos, an
+                ordinary Tuesday afternoon has a way of turning into a first
+                prototype.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -312,28 +349,50 @@ export default function Home() {
       <section className="section alumni bg-buildings" id="alumni" style={bgStyle}>
         <BgBuildingsLayer />
         <div className="container">
-          <div className="fade-up" ref={alumniRef}>
+          <div className="fade-up" ref={alumniHeaderRef}>
             <span className="eyebrow">Alumni</span>
             <h2 className="section__heading">Founders who started here</h2>
           </div>
-          <div className="alumni__grid">
-            {alumni.map((a) => (
-              <AlumniCard key={a.name} {...a} />
-            ))}
-          </div>
 
-          {/* Alumni startup logo carousel */}
-          <div className="alumni__startups">
-            <p className="alumni__startups-label eyebrow">Startups built by our alumni</p>
-            <LogoCarousel
-              items={alumniStartups}
-              perPage={4}
-              renderItem={({ name, src }) => (
-                <div className="alumni__logo-box">
-                  <img src={src} alt={name} className="alumni__brand-logo" />
+          <div className="alum-timeline" ref={alumniTimelineRef}>
+            {alumniTimeline.map(({ names, title, photos, brandLogo, brandName }, i) => (
+              <div
+                key={names}
+                className={`alum-row fade-up${i % 2 === 1 ? ' alum-row--flip' : ''}`}
+              >
+                {/* Person side */}
+                <div className="alum-person">
+                  <div className="alum-person__photos">
+                    {photos.map((src, j) => (
+                      <img
+                        key={j}
+                        src={src}
+                        alt={photos.length > 1 ? names.split(' & ')[j] || names : names}
+                        className="alum-photo"
+                      />
+                    ))}
+                  </div>
+                  <p className="alum-name">{names}</p>
+                  <p className="alum-title">{title}</p>
                 </div>
-              )}
-            />
+
+                {/* Center line + dot */}
+                <div className="alum-center">
+                  <span className="alum-dot" />
+                </div>
+
+                {/* Brand logo side */}
+                <div className="alum-logo-wrap">
+                  {brandLogo && (
+                    <img
+                      src={brandLogo}
+                      alt={brandName}
+                      className="alum-brand-logo"
+                    />
+                  )}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

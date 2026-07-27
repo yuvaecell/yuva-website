@@ -7,9 +7,7 @@ import {
   Briefcase, LineChart, Sparkles, ShieldCheck, Lightbulb,
 } from 'lucide-react'
 import buildingPhoto from '../../assets/photos/buildings.jpg'
-import photoThinkspace from '../../assets/photos/thinkspace.png'
 import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
-import photoYuvaRoom from '../../assets/photos/yuvaroom.png'
 import yuvaIcon from '../../assets/logos/yuva-icon-only.png'
 import logoAmex from '../../assets/logos/projects/AMEX.png'
 import logoPepsico from '../../assets/logos/projects/PEPSICO.png'
@@ -198,7 +196,6 @@ export default function WhatWeDo() {
 
   const servicesRef    = useFadeUp()
   const compHeaderRef  = useFadeUp()
-  const thinkspaceRef  = useFadeUp()
   const pastHeaderRef  = useFadeUp()
 
   // Scroll to anchored section when navigating with a hash
@@ -514,26 +511,7 @@ export default function WhatWeDo() {
         )}
       </section>
 
-      {/* ── 5. THINKSPACE — building bg ──────────────────────── */}
-      <section id="thinkspace" className="wwd-section wwd-thinkspace bg-buildings" style={bgStyle}>
-        <BgBuildingsLayer />
-        <div className="container">
-          <div className="fade-up" ref={thinkspaceRef}>
-            <span className="eyebrow">Our Space</span>
-            <h2 className="wwd-section__heading">ThinkSpace: Room 168</h2>
-            <p className="wwd-thinkspace__sub">
-              Room 168, where Yuvaites gather, brainstorm, and build. A safe,
-              fun space for every entrepreneurial mind on campus.
-            </p>
-          </div>
-          <div className="wwd-thinkspace__photos">
-            <img src={photoThinkspace} alt="ThinkSpace, Room 168" className="wwd-thinkspace__img" />
-            <img src={photoYuvaRoom} alt="Yuva Room" className="wwd-thinkspace__img" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── 6. PAST PROJECTS LOGO CAROUSEL — plain bg ───────── */}
+      {/* ── 5. PAST PROJECTS LOGO CAROUSEL — plain bg ───────── */}
       <section className="wwd-section wwd-past">
         <div className="container">
           <div className="fade-up" ref={pastHeaderRef}>
