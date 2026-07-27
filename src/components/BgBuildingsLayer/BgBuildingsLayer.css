@@ -1,0 +1,20 @@
+/* Hidden on desktop — desktop uses background-attachment:fixed on the section */
+.bg-buildings-layer {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .bg-buildings-layer {
+    display: block;
+    position: absolute;
+    top: -20%;
+    bottom: -20%;
+    left: 0;
+    right: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    will-change: transform;
+    pointer-events: none;
+  }
+}

@@ -1,5 +1,6 @@
 import { User, Share2, Briefcase, Rocket } from 'lucide-react'
 import buildingPhoto from '../../assets/photos/buildings.jpg'
+import BgBuildingsLayer from '../BgBuildingsLayer/BgBuildingsLayer'
 import './StatBlock.css'
 
 const stats = [
@@ -15,6 +16,7 @@ export default function StatBlock() {
       className="statblock bg-buildings"
       style={{ backgroundImage: `url(${buildingPhoto})` }}
     >
+      <BgBuildingsLayer />
       <div className="container">
         <div className="statblock__grid">
           {stats.map(({ value, label, Icon }) => (

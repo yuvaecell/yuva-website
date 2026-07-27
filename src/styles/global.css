@@ -125,6 +125,7 @@ button:focus-visible {
 @media (max-width: 767px) {
   .bg-buildings {
     background-attachment: scroll;
+    overflow: hidden; /* clip the extended parallax layer */
   }
 }
 
@@ -133,11 +134,17 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   background-color: rgba(18, 62, 104, 0.85);
-  z-index: 0;
+  z-index: 1; /* above parallax layer (z-index 0) */
   pointer-events: none;
 }
 
-.bg-buildings > * {
+/* Parallax layer sits below overlay; all other direct children above it */
+.bg-buildings > .bg-buildings-layer {
+  position: absolute;
+  z-index: 0;
+}
+
+.bg-buildings > *:not(.bg-buildings-layer) {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }

@@ -24,6 +24,7 @@ import logoIitm  from '../../assets/logos/case-comps/IITM.png'
 import logoSrcc  from '../../assets/logos/case-comps/SRCC.png'
 
 import LogoCarousel from '../../components/LogoCarousel/LogoCarousel'
+import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import './Achievements.css'
 
 // ─── Fade-up hook (single element — matches site-wide pattern) ───
@@ -166,6 +167,7 @@ export default function Achievements() {
 
       {/* ── 1. HERO ─────────────────────────────────────────────── */}
       <section className="ach-hero bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={heroRef}>
             <span className="eyebrow">Achievements</span>
@@ -231,6 +233,7 @@ export default function Achievements() {
 
       {/* ── 3. MORE COMPETITIONS ─────────────────────────────────── */}
       <section className="ach-section ach-more" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={moreRef}>
             <h2 className="ach-section__heading">More competitions</h2>

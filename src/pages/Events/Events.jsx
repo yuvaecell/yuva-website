@@ -22,6 +22,7 @@ import photoInvestorsDay from '../../assets/photos/events/investorsday-photo.png
 import photoStartupFood from '../../assets/photos/events/startupfood-photo.png'
 import photoMilen from '../../assets/photos/events/milen-photo.png'
 import logoMilen from '../../assets/logos/events/milen-logo.png'
+import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import './Events.css'
 
 function useFadeUp() {
@@ -217,6 +218,7 @@ export default function Events() {
 
       {/* ── 2. E-SUMMIT '26 — dark building bg ─────────────────── */}
       <section id="e-summit" className="ev-section bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={esummitRef}>
             <div className="ev-section__brand">
@@ -271,6 +273,7 @@ export default function Events() {
 
       {/* ── 4. OTHER EVENTS — dark building bg ─────────────────── */}
       <section id="other-events" className="ev-section bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={otherRef}>
             <span className="eyebrow">Beyond the Campus</span>

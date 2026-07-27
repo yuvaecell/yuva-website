@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import buildingPhoto from '../../assets/photos/buildings.jpg'
 import photoThinkspace from '../../assets/photos/thinkspace.png'
+import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import photoYuvaRoom from '../../assets/photos/yuvaroom.png'
 import yuvaIcon from '../../assets/logos/yuva-icon-only.png'
 import logoAmex from '../../assets/logos/projects/AMEX.png'
@@ -330,6 +331,7 @@ export default function WhatWeDo() {
 
       {/* ── 1. PAGE HEADER — building bg ──────────────────────── */}
       <section className="wwd-header bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <span className="eyebrow">What We Do</span>
           <h1 className="wwd-header__heading">How we build founders</h1>
@@ -403,6 +405,7 @@ export default function WhatWeDo() {
 
       {/* ── 3. CORE COMPETENCIES — building bg ────────────────── */}
       <section className="wwd-section wwd-competencies bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={compHeaderRef}>
             <span className="eyebrow">Core Competencies</span>
@@ -513,6 +516,7 @@ export default function WhatWeDo() {
 
       {/* ── 5. THINKSPACE — building bg ──────────────────────── */}
       <section id="thinkspace" className="wwd-section wwd-thinkspace bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={thinkspaceRef}>
             <span className="eyebrow">Our Space</span>

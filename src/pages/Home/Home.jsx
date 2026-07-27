@@ -26,7 +26,6 @@ import brandMerchantRecords from '../../assets/logos/alumni-brands/merchantrecor
 import iconProjects from '../../assets/logos/what-we-do/projects.png'
 import iconEvent from '../../assets/logos/what-we-do/event.png'
 import iconStartups from '../../assets/logos/what-we-do/startups.png'
-import iconCommunity from '../../assets/logos/what-we-do/community.png'
 import partnerAmex from '../../assets/logos/partners/AMEX.png'
 import partnerItc from '../../assets/logos/partners/ITC.png'
 import partnerPepsico from '../../assets/logos/partners/PEPSICO.png'
@@ -51,6 +50,7 @@ import StatBlock from '../../components/StatBlock/StatBlock'
 import EventCard from '../../components/EventCard/EventCard'
 import AlumniCard from '../../components/AlumniCard/AlumniCard'
 import LogoCarousel from '../../components/LogoCarousel/LogoCarousel'
+import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import './Home.css'
 
 // IntersectionObserver hook for fade-up reveals
@@ -152,10 +152,9 @@ const partners = [
 ]
 
 const whatWeDo = [
-  { title: 'Live Projects',      desc: 'Real consulting work with real companies.',     icon: iconProjects,  to: '/what-we-do#projects' },
-  { title: 'Flagship Events',    desc: "Founder's Forge, E-Summit, and more.",          icon: iconEvent,     to: '/events' },
   { title: 'Startup Support',    desc: "Direct line to SIIF's incubation resources.",   icon: iconStartups,  to: '/siif' },
-  { title: 'Founder Community',  desc: 'A network of 3,800+ student entrepreneurs.',    icon: iconCommunity, to: '/what-we-do#thinkspace' },
+  { title: 'Flagship Events',    desc: "Founder's Forge, E-Summit, and more.",          icon: iconEvent,     to: '/events' },
+  { title: 'Live Projects',      desc: 'Real consulting work with real companies.',     icon: iconProjects,  to: '/what-we-do#projects' },
 ]
 
 export default function Home() {
@@ -171,6 +170,7 @@ export default function Home() {
     <div className="home">
       {/* ─── 1. HERO ─────────────────────────────────────────── */}
       <section className="hero bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container hero__inner">
           <div className="hero__content">
             <span className="eyebrow">Entrepreneurship Cell, SSCBS, Est. 2009</span>
@@ -185,7 +185,6 @@ export default function Home() {
             </p>
             <div className="hero__actions">
               <a href="#site-footer" className="btn btn--primary">Contact us</a>
-              <Link to="/what-we-do" className="btn btn--outline">What we do</Link>
             </div>
           </div>
 
@@ -211,16 +210,9 @@ export default function Home() {
 
       {/* ─── 3. ABOUT US ─────────────────────────────────────── */}
       <section className="section about bg-buildings" id="about" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="about__inner fade-up" ref={aboutRef}>
-            <div className="about__photo-col">
-              <img
-                src={aboutPhoto}
-                alt="Yuva members at a college event"
-                className="about__photo"
-              />
-            </div>
-
             <div className="about__text-col">
               <span className="eyebrow">About Yuva</span>
               <h2 className="section__heading">More than an E-Cell</h2>
@@ -239,23 +231,8 @@ export default function Home() {
                 lasting impact.
               </p>
 
-              <div className="about__stats">
-                <div className="about__stat">
-                  <p className="about__stat-value">3,800+</p>
-                  <p className="about__stat-label">Student Network</p>
-                </div>
-                <div className="about__stat">
-                  <p className="about__stat-value">50+</p>
-                  <p className="about__stat-label">Brand Collaborations</p>
-                </div>
-                <div className="about__stat">
-                  <p className="about__stat-value">130+</p>
-                  <p className="about__stat-label">Investor Network</p>
-                </div>
-              </div>
-
               <div className="about__boxes">
-                <div className="about__box">
+                <Link to="/what-we-do#projects" className="about__box">
                   <img src={yAccelLogo} alt="Y-Accel logo" className="about__box-logo" />
                   <h4 className="about__box-title">Y-ACCEL</h4>
                   <p className="about__box-text">
@@ -263,17 +240,27 @@ export default function Home() {
                     research, GTM strategy, marketing support, and access to
                     mentors and investors.
                   </p>
-                </div>
-                <div className="about__box">
+                </Link>
+                <Link to="/siif" className="about__box">
                   <img src={siifLogo} alt="SIIF logo" className="about__box-logo" />
                   <h4 className="about__box-title">Connected to SIIF</h4>
                   <p className="about__box-text">
-                    SSCBS Innovation and Incubation Foundation empowers startups
-                    through funding, mentorship, and incubation, having backed
-                    80+ ventures with over ₹2.65 crore disbursed.
+                    The SSCBS Innovation and Incubation Foundation (SIIF), supported
+                    by the Delhi Government's Incubation Policy, is the official
+                    incubation centre of SSCBS and DU. It empowers student
+                    entrepreneurs with guidance, resources, mentorship, and financial
+                    aid, helping them turn ideas into impactful ventures.
                   </p>
-                </div>
+                </Link>
               </div>
+            </div>
+
+            <div className="about__photo-col">
+              <img
+                src={aboutPhoto}
+                alt="Yuva members at a college event"
+                className="about__photo"
+              />
             </div>
           </div>
         </div>
@@ -284,7 +271,7 @@ export default function Home() {
         <div className="container">
           <div className="fade-up" ref={whatWeDoRef}>
             <span className="eyebrow">What We Do</span>
-            <h2 className="section__heading">Four ways we build founders</h2>
+            <h2 className="section__heading">How we build founders.</h2>
           </div>
           <div className="what-we-do__grid">
             {whatWeDo.map(({ title, desc, icon, to }) => (
@@ -323,6 +310,7 @@ export default function Home() {
 
       {/* ─── 7. NOTABLE ALUMNI ───────────────────────────────── */}
       <section className="section alumni bg-buildings" id="alumni" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={alumniRef}>
             <span className="eyebrow">Alumni</span>

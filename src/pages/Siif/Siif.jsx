@@ -6,6 +6,7 @@ import {
 import buildingPhoto from '../../assets/photos/buildings.jpg'
 import siifLogo from '../../assets/logos/siif-logo.png'
 import siifPhoto from '../../assets/photos/siif.png'
+import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import './Siif.css'
 
 function useFadeUp() {
@@ -99,6 +100,7 @@ export default function Siif() {
 
       {/* ── 1. HERO — dark building bg ─────────────────────────── */}
       <section className="siif-hero bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="siif-hero__inner fade-up" ref={heroRef}>
             <div className="siif-hero__text">
@@ -151,6 +153,7 @@ export default function Siif() {
 
       {/* ── 3. IMPACT STATS — dark building bg ─────────────────── */}
       <section className="siif-section siif-stats bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="fade-up" ref={statsHeaderRef}>
             <span className="eyebrow">Our Impact</span>
@@ -203,6 +206,7 @@ export default function Siif() {
 
       {/* ── 5. CLOSING CTA — dark building bg ──────────────────── */}
       <section className="siif-cta bg-buildings" style={bgStyle}>
+        <BgBuildingsLayer />
         <div className="container">
           <div className="siif-cta__inner fade-up" ref={ctaRef}>
             <h2 className="siif-cta__heading">Ready to transform your idea?</h2>
