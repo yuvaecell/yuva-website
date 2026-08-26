@@ -330,7 +330,7 @@ export default function WhatWeDo() {
       <section className="wwd-header bg-buildings" style={bgStyle}>
         <BgBuildingsLayer />
         <div className="container">
-          <span className="eyebrow">What We Do</span>
+          <span className="eyebrow">Projects</span>
           <h1 className="wwd-header__heading">How we build founders</h1>
           <p className="wwd-header__sub">
             From flagship events to real consulting work: here's the full picture.

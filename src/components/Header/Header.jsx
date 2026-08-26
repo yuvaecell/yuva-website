@@ -7,7 +7,7 @@ const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Annual Report', to: '/about' },
   { label: 'Achievements', to: '/achievements' },
-  { label: 'What We Do', to: '/what-we-do' },
+  { label: 'Projects', to: '/what-we-do' },
   { label: 'Events', to: '/events' },
   { label: 'SIIF', to: '/siif' },
   { label: 'Join Us', to: '/join' },

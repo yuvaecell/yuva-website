@@ -216,18 +216,11 @@ export default function Home() {
           </div>
 
           <div className="hero__photo-wrap">
-            <div className="hero__photo-overlay-wrap">
-              <img
-                src={teamPhoto}
-                alt="Yuva team at E-Cell"
-                className="hero__photo"
-              />
-              <div className="hero__photo-scrim" aria-hidden="true" />
-              <div className="hero__photo-text" aria-hidden="true">
-                <span className="hero__photo-text--caps">THE</span>
-                <span className="hero__photo-text--script">Misfits</span>
-              </div>
-            </div>
+            <img
+              src={teamPhoto}
+              alt="Yuva team at E-Cell"
+              className="hero__photo"
+            />
           </div>
         </div>
       </section>
@@ -297,7 +290,7 @@ export default function Home() {
       <section className="section what-we-do" id="what-we-do">
         <div className="container">
           <div className="fade-up" ref={whatWeDoRef}>
-            <span className="eyebrow">What We Do</span>
+            <span className="eyebrow">Projects</span>
             <h2 className="section__heading">How we build founders.</h2>
           </div>
           <div className="what-we-do__grid">
