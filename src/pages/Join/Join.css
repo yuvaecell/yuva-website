@@ -150,6 +150,11 @@
   color: #C0392B;
 }
 
+.join-form__success {
+  font-size: 0.8rem;
+  color: var(--y-blue);
+}
+
 .join-form__submit-row {
   display: flex;
   align-items: center;
