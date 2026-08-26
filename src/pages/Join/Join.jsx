@@ -3,6 +3,9 @@ import teamPhoto from '../../assets/photos/teamphoto.png'
 import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import './Join.css'
 
+// Flip this to true to reopen the recruitment form.
+const REGISTRATIONS_OPEN = false
+
 // Recruitment cycle Apps Script endpoint — swap this when a new intake
 // starts writing to a different Sheet.
 const RECRUITMENT_FORM_ENDPOINT =
@@ -112,6 +115,11 @@ export default function Join() {
           </div>
 
           <div className="join-form-card">
+            {!REGISTRATIONS_OPEN ? (
+              <p className="join-form__closed">
+                Registrations aren't open yet. Check back soon.
+              </p>
+            ) : (
             <form className="join-form" onSubmit={handleSubmit} noValidate>
               <div
                 className="join-form__honeypot"
@@ -230,6 +238,7 @@ export default function Join() {
                 {submitSuccess && <span className="join-form__success">Submitted successfully.</span>}
               </div>
             </form>
+            )}
           </div>
         </div>
       </section>

@@ -76,6 +76,14 @@
   gap: 1.25rem;
 }
 
+.join-form__closed {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--slate);
+  line-height: 1.6;
+  text-align: center;
+}
+
 .join-form__honeypot {
   position: absolute;
   width: 1px;
