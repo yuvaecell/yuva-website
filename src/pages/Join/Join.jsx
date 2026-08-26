@@ -96,7 +96,7 @@ export default function Join() {
         <div className="container join-hero__inner">
           <div className="join-hero__intro">
             <span className="eyebrow">Join Us</span>
-            <h1 className="join-hero__heading">Join Us</h1>
+            <h1 className="join-hero__heading">Apply to Yuva</h1>
             <p className="join-hero__body">
               Fill out the form below, and we'll be in touch.
             </p>
