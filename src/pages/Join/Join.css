@@ -1,26 +1,41 @@
 .join-page {
   background-color: var(--paper);
-  min-height: 80vh;
 }
 
 .join-hero {
-  padding: 8rem 0 7rem;
+  min-height: 90vh;
+  padding: 6rem 0;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 767px) {
   .join-hero {
+    min-height: auto;
     padding: 5rem 0 4rem;
   }
 }
 
 .join-hero__inner {
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.join-hero__intro {
+  text-align: center;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+}
+
+.join-hero__intro .eyebrow {
+  color: rgba(246, 244, 238, 0.58);
 }
 
 .join-hero__heading {
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   font-weight: 700;
-  color: var(--ink);
+  color: var(--white);
   line-height: 1.1;
   letter-spacing: -0.03em;
   margin-bottom: 1.25rem;
@@ -28,18 +43,30 @@
 
 .join-hero__body {
   font-size: 1.05rem;
-  color: var(--slate);
+  color: rgba(246, 244, 238, 0.7);
   line-height: 1.7;
-  max-width: 440px;
-  margin-bottom: 2.5rem;
 }
 
-/* ── Form ──────────────────────────────────────────────── */
+/* ── Form card ─────────────────────────────────────────── */
+.join-form-card {
+  width: 100%;
+  max-width: 520px;
+  background-color: var(--paper);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+}
+
+@media (max-width: 767px) {
+  .join-form-card {
+    padding: 1.75rem;
+  }
+}
+
 .join-form {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  max-width: 440px;
 }
 
 .join-form__honeypot {
@@ -67,7 +94,8 @@
   color: var(--ink);
 }
 
-.join-form__field input {
+.join-form__field input,
+.join-form__field select {
   font-family: var(--font-body);
   font-size: 0.95rem;
   color: var(--ink);
@@ -84,12 +112,29 @@
   color: var(--slate);
 }
 
-.join-form__field input:focus {
+.join-form__field select {
+  cursor: pointer;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%231D5B96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  background-size: 14px;
+}
+
+.join-form__field select:disabled {
+  cursor: not-allowed;
+  color: var(--slate);
+  background-color: rgba(16, 24, 43, 0.04);
+}
+
+.join-form__field input:focus,
+.join-form__field select:focus {
   border-color: var(--y-blue);
   box-shadow: 0 0 0 3px rgba(29, 91, 150, 0.15);
 }
 
-.join-form__field input[aria-invalid='true'] {
+.join-form__field input[aria-invalid='true'],
+.join-form__field select[aria-invalid='true'] {
   border-color: #C0392B;
 }
 
