@@ -4,7 +4,7 @@ import './Join.css'
 // Recruitment cycle Apps Script endpoint — swap this when a new intake
 // starts writing to a different Sheet.
 const RECRUITMENT_FORM_ENDPOINT =
-  'https://script.google.com/macros/s/AKfycbxD7SH6s4jZE1k9OPolutnrutrmSxjQuDcp8dzj5JYrhLAzRZaGguHLvXx3j0LdC2Y0cA/exec'
+  'https://script.google.com/macros/s/AKfycbw_IK7AOWig1jhh41qyUcCQawwSSA6G0mAAF2kxn_T3dnqvaYNPRbYJ-bvXeGgD2UWR/exec'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const PHONE_PATTERN = /^\d{7,15}$/
