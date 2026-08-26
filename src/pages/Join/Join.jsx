@@ -21,6 +21,7 @@ const CLASS_OPTIONS_BY_COURSE = {
 
 const EMPTY_FORM = {
   name: '',
+  roll: '',
   email: '',
   course: '',
   class: '',
@@ -52,6 +53,7 @@ export default function Join() {
   function validate() {
     const next = {}
     if (!form.name.trim()) next.name = 'Please enter your name.'
+    if (!form.roll.trim()) next.roll = 'Please enter your roll number.'
     if (!form.email.trim()) next.email = 'Please enter your email.'
     else if (!EMAIL_PATTERN.test(form.email.trim())) next.email = 'Enter a valid email address.'
     if (!form.course.trim()) next.course = 'Please select your course.'
@@ -129,6 +131,19 @@ export default function Join() {
                   aria-invalid={Boolean(errors.name)}
                 />
                 {errors.name && <span className="join-form__error">{errors.name}</span>}
+              </div>
+
+              <div className="join-form__field">
+                <label htmlFor="roll">Roll Number</label>
+                <input
+                  type="text"
+                  id="roll"
+                  name="roll"
+                  value={form.roll}
+                  onChange={handleChange}
+                  aria-invalid={Boolean(errors.roll)}
+                />
+                {errors.roll && <span className="join-form__error">{errors.roll}</span>}
               </div>
 
               <div className="join-form__field">
