@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import buildingPhoto from '../../assets/photos/buildings.jpg'
+import teamPhoto from '../../assets/photos/teamphoto.png'
 import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer'
 import './Join.css'
 
@@ -34,7 +34,7 @@ export default function Join() {
   const [submitError, setSubmitError] = useState('')
   const [submitting, setSubmitting] = useState(false)
 
-  const bgStyle = { backgroundImage: `url(${buildingPhoto})` }
+  const bgStyle = { backgroundImage: `url(${teamPhoto})` }
   const classOptions = CLASS_OPTIONS_BY_COURSE[form.course] || []
 
   function handleChange(e) {
@@ -90,13 +90,13 @@ export default function Join() {
   return (
     <div className="join-page">
       <section className="join-hero bg-buildings" style={bgStyle}>
-        <BgBuildingsLayer />
+        <BgBuildingsLayer image={teamPhoto} />
         <div className="container join-hero__inner">
           <div className="join-hero__intro">
             <span className="eyebrow">Join Us</span>
-            <h1 className="join-hero__heading">Apply to Yuva</h1>
+            <h1 className="join-hero__heading">Join Us</h1>
             <p className="join-hero__body">
-              Applications are open. Fill out the form below and we'll be in touch.
+              Fill out the form below, and we'll be in touch.
             </p>
           </div>
 
@@ -129,6 +129,19 @@ export default function Join() {
                   aria-invalid={Boolean(errors.name)}
                 />
                 {errors.name && <span className="join-form__error">{errors.name}</span>}
+              </div>
+
+              <div className="join-form__field">
+                <label htmlFor="contact">Contact Number</label>
+                <input
+                  type="tel"
+                  id="contact"
+                  name="contact"
+                  value={form.contact}
+                  onChange={handleChange}
+                  aria-invalid={Boolean(errors.contact)}
+                />
+                {errors.contact && <span className="join-form__error">{errors.contact}</span>}
               </div>
 
               <div className="join-form__field">
@@ -179,19 +192,6 @@ export default function Join() {
                   ))}
                 </select>
                 {errors.class && <span className="join-form__error">{errors.class}</span>}
-              </div>
-
-              <div className="join-form__field">
-                <label htmlFor="contact">Contact Number</label>
-                <input
-                  type="tel"
-                  id="contact"
-                  name="contact"
-                  value={form.contact}
-                  onChange={handleChange}
-                  aria-invalid={Boolean(errors.contact)}
-                />
-                {errors.contact && <span className="join-form__error">{errors.contact}</span>}
               </div>
 
               <div className="join-form__submit-row">

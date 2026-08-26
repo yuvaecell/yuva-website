@@ -3,7 +3,7 @@ import buildingImg from '../../assets/photos/buildings.jpg'
 import { registerParallaxLayer } from './parallaxManager'
 import './BgBuildingsLayer.css'
 
-export default function BgBuildingsLayer() {
+export default function BgBuildingsLayer({ image = buildingImg }) {
   const layerRef = useRef(null)
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function BgBuildingsLayer() {
       ref={layerRef}
       className="bg-buildings-layer"
       aria-hidden="true"
-      style={{ backgroundImage: `url(${buildingImg})` }}
+      style={{ backgroundImage: `url(${image})` }}
     />
   )
 }

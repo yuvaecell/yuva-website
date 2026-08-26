@@ -9,6 +9,13 @@
   align-items: center;
 }
 
+/* Team photo is much brighter than the standard buildings.jpg background,
+   so this section needs a stronger tint to keep the light text and card
+   readable. */
+.join-hero.bg-buildings::before {
+  background-color: rgba(18, 62, 104, 0.92);
+}
+
 @media (max-width: 767px) {
   .join-hero {
     min-height: auto;
