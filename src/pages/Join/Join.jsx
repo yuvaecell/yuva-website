@@ -4,7 +4,7 @@ import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer
 import './Join.css'
 
 // Flip this to true to reopen the recruitment form.
-const REGISTRATIONS_OPEN = false
+const REGISTRATIONS_OPEN = true
 
 // Recruitment cycle Apps Script endpoint — swap this when a new intake
 // starts writing to a different Sheet.
