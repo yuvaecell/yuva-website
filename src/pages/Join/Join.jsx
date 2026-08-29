@@ -4,7 +4,7 @@ import BgBuildingsLayer from '../../components/BgBuildingsLayer/BgBuildingsLayer
 import './Join.css'
 
 // Flip this to true to reopen the recruitment form.
-const REGISTRATIONS_OPEN = true
+const REGISTRATIONS_OPEN = false
 
 // Recruitment cycle Apps Script endpoint — swap this when a new intake
 // starts writing to a different Sheet.
@@ -117,7 +117,7 @@ export default function Join() {
           <div className="join-form-card">
             {!REGISTRATIONS_OPEN ? (
               <p className="join-form__closed">
-                Registrations aren't open yet. Check back soon.
+                Recruitments are over.
               </p>
             ) : (
             <form className="join-form" onSubmit={handleSubmit} noValidate>
